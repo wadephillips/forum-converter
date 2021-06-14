@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 
 class ForumConverterCommand extends Command
 {
-    public $signature = 'ee2-forum-to-bbp';
+    public $signature = 'ee-forum:migrate';
 
-    public $description = 'My command';
+    public $description = 'Migrates ExpressionEngine 2 forum components into a Wordpress structure sutible for use with BBpress or Buddy Boss';
 
     public function handle()
     {
