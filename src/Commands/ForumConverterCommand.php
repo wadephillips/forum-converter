@@ -23,22 +23,27 @@ class ForumConverterCommand extends Command
 
         if ($options['all']) {
             $this->info('Migrating All Forum Components');
+            //todo: add a class to handle this option, new Components::migrate
         }
 
         if ($options['categories']) {
             $this->info('Migrating Forum Categories');
+            //todo: add a class to handle this option, new Categories::migrate
         }
 
         if ($options['forums']) {
             $this->info('Migrating Forums');
+            //todo: add a class to handle this option, new Forums::migrate
         }
 
         if ($options['topics']) {
             $this->info('Migrating Forum Topics');
+            //todo: add a class to handle this option, new Topics::migrate
         }
 
         if ($options['comments']) {
             $this->info('Migrating Forum Comments');
+            //todo: add a class to handle this option, new Comments::migrate
         }
 
         $this->comment('All done');
