@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace wadelphillips\ForumConverter\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class ForumConverterCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'ee2-forum-to-bbp';
 
     public $description = 'My command';
 

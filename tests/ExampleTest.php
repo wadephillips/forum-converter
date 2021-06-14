@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace wadelphillips\ForumConverter\Tests;
 
 class ExampleTest extends TestCase
 {

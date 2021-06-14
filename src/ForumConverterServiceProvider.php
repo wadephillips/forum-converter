@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace wadelphillips\ForumConverter;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use wadelphillips\ForumConverter\Commands\ForumConverterCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class ForumConverterServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('ee2-forum-to-bbp')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_ee2-forum-to-bbp_table')
+            ->hasCommand(ForumConverterCommand::class);
     }
 }
