@@ -17,7 +17,6 @@ class ForumConverterCommand extends Command
 
     public function handle()
     {
-
         $options = $this->options();
 
         if ($options['all']) {
