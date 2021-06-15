@@ -14,4 +14,15 @@ class LegacyComment extends Model
     protected $connection = 'legacy';
 
     protected $table = 'forum_posts';
+
+    public function topic()
+    {
+        return $this->belongsTo(LegacyTopic::class, 'topic_id' ,'topic_id');
+    }
+
+    public function forum()
+    {
+        return $this->belongsTo(LegacyTopic::class, 'forum_id' ,'forum_id');
+    }
+
 }
