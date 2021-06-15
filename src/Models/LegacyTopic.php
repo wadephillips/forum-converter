@@ -3,7 +3,6 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-
 use Corcel\Model;
 
 class LegacyTopic extends Model
