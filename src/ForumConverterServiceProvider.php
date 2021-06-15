@@ -25,8 +25,9 @@ class ForumConverterServiceProvider extends PackageServiceProvider
 
     public function packageRegistered()
     {
-        config()->set('database.connections.legacy',
-            config('forum-converter.database.connections.legacy'));
-
+        config()->set(
+            'database.connections.legacy',
+            config('forum-converter.database.connections.legacy')
+        );
     }
 }
