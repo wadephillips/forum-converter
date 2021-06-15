@@ -3,8 +3,9 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-use Corcel\Model;
+use Corcel\Model\Post;
 
-class Topic extends Model
+class Topic extends Post
 {
+    protected $postType = 'topic';
 }

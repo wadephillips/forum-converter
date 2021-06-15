@@ -3,8 +3,9 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-use Corcel\Model;
+use Corcel\Model\Post;
 
-class Comment extends Model
+class Comment extends Post
 {
+    protected $postType = 'comment';
 }
