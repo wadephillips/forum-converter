@@ -1,12 +1,12 @@
 {
-    "name": "wadelphillips/ee2-forum-to-bbp",
+    "name": "wadelphillips/forum-converter",
     "description": "This package provides a helpful route to migrate Expression Engine 2 Forums into BBPress/ BuddyBoss forums.",
     "keywords": [
         "wadelphillips",
         "laravel",
-        "ee2-forum-to-bbp"
+        "forum-converter"
     ],
-    "homepage": "https://github.com/wadelphillips/ee2-forum-to-bbp",
+    "homepage": "https://github.com/wadelphillips/forum-converter",
     "license": "MIT",
     "authors": [
         {

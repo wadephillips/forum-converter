@@ -29,7 +29,7 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
         /*
-        include_once __DIR__.'/../database/migrations/create_ee2-forum-to-bbp_table.php.stub';
+        include_once __DIR__.'/../database/migrations/create_forum-converter_table.php.stub';
         (new \CreatePackageTable())->up();
         */
     }

@@ -11,6 +11,6 @@ class ForumConverterFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'ee2-forum-to-bbp';
+        return 'forum-converter';
     }
 }

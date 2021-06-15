@@ -1,15 +1,15 @@
 # This package provides a helpful route to migrate Expression Engine 2 Forums into BBPress/ BuddyBoss forums.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/wadelphillips/ee2-forum-to-bbp.svg?style=flat-square)](https://packagist.org/packages/wadelphillips/ee2-forum-to-bbp)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/wadelphillips/ee2-forum-to-bbp/run-tests?label=tests)](https://github.com/wadelphillips/ee2-forum-to-bbp/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/wadelphillips/ee2-forum-to-bbp/Check%20&%20fix%20styling?label=code%20style)](https://github.com/wadelphillips/ee2-forum-to-bbp/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/wadelphillips/ee2-forum-to-bbp.svg?style=flat-square)](https://packagist.org/packages/wadelphillips/ee2-forum-to-bbp)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/wadelphillips/forum-converter.svg?style=flat-square)](https://packagist.org/packages/wadelphillips/forum-converter)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/wadelphillips/forum-converter/run-tests?label=tests)](https://github.com/wadelphillips/forum-converter/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/wadelphillips/forum-converter/Check%20&%20fix%20styling?label=code%20style)](https://github.com/wadelphillips/forum-converter/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/wadelphillips/forum-converter.svg?style=flat-square)](https://packagist.org/packages/wadelphillips/forum-converter)
 
 ---
 This repo can be used as to scaffold a Laravel package. Follow these steps to get started:
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this ee2-forum-to-bbp
-2. Run "./configure-ee2-forum-to-bbp.sh" to run a script that will replace all placeholders throughout all the files
+1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this forum-converter
+2. Run "./configure-forum-converter.sh" to run a script that will replace all placeholders throughout all the files
 3. Remove this block of text.
 4. Have fun creating your package.
 5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
@@ -19,7 +19,7 @@ This is where your description should go. Limit it to a paragraph or two. Consid
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/ee2-forum-to-bbp.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/ee2-forum-to-bbp)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/forum-converter.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/forum-converter)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -30,19 +30,19 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require wadelphillips/ee2-forum-to-bbp
+composer require wadelphillips/forum-converter
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="wadelphillips\ForumConverter\ForumConverterServiceProvider" --tag="ee2-forum-to-bbp-migrations"
+php artisan vendor:publish --provider="wadelphillips\ForumConverter\ForumConverterServiceProvider" --tag="forum-converter-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="wadelphillips\ForumConverter\ForumConverterServiceProvider" --tag="ee2-forum-to-bbp-config"
+php artisan vendor:publish --provider="wadelphillips\ForumConverter\ForumConverterServiceProvider" --tag="forum-converter-config"
 ```
 
 This is the contents of the published config file:
@@ -55,8 +55,8 @@ return [
 ## Usage
 
 ```php
-$ee2-forum-to-bbp = new wadelphillips\ForumConverter();
-echo $ee2-forum-to-bbp->echoPhrase('Hello, Spatie!');
+$forum-converter = new wadelphillips\ForumConverter();
+echo $forum-converter->echoPhrase('Hello, Spatie!');
 ```
 
 ## Testing
