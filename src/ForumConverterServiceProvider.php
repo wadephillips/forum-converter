@@ -16,10 +16,17 @@ class ForumConverterServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('ee2-forum-to-bbp')
+            ->name('forum-converter')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_ee2-forum-to-bbp_table')
+            ->hasMigration('create_forum_converter_table')
             ->hasCommand(ForumConverterCommand::class);
+    }
+
+    public function packageRegistered()
+    {
+        config()->set('database.connections.legacy',
+            config('forum-converter.database.connections.legacy'));
+
     }
 }
