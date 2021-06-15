@@ -3,7 +3,6 @@
 namespace wadelphillips\ForumConverter\Commands;
 
 use Illuminate\Console\Command;
-use function collect;
 
 class ForumConverterCommand extends Command
 {
