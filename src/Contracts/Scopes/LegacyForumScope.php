@@ -3,13 +3,11 @@
 
 namespace wadelphillips\ForumConverter\Contracts\Scopes;
 
-
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class LegacyForumScope implements \Illuminate\Database\Eloquent\Scope
 {
-
     /**
      * @inheritDoc
      */

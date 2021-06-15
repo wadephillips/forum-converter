@@ -3,7 +3,6 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumScope;
 

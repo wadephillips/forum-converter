@@ -3,7 +3,6 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class LegacyTopic extends Model
