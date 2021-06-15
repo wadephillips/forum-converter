@@ -8,4 +8,5 @@ use Corcel\Model\Post;
 class Forum extends Post
 {
     protected $postType = 'forum';
+
 }
