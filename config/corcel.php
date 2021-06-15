@@ -1,5 +1,10 @@
 <?php
 
+use wadelphillips\ForumConverter\Models\Category;
+use wadelphillips\ForumConverter\Models\Comment;
+use wadelphillips\ForumConverter\Models\Forum;
+use wadelphillips\ForumConverter\Models\Topic;
+
 return [
 
     /*
@@ -32,7 +37,10 @@ return [
     */
 
     'post_types' => [
-//        'video' => App\Models\Video::class,
+        'category' => Category::class,
+        'forum' => Forum::class,
+        'topic' => Topic::class,
+        'comment' => Comment::class,
     ],
 
     /*
