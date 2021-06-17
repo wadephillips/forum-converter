@@ -24,7 +24,7 @@ class ForumConverterCommand extends Command
         $options = $this->options();
 
         if ( $options[ 'all' ] ) {
-            $this->info('Migrating All Forum Components');
+            $this->info('Migrating All Forum Components...');
             //todo: add a class to handle this option, new Components::migrate
             $this->migrateComponents();
         }

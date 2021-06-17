@@ -37,4 +37,14 @@
     <logging>
         <junit outputFile="build/report.junit.xml"/>
     </logging>
+    <php>
+        <env name='LEGACY_DB_CONNECTION' value='legacy'/>
+        <env name='LEGACY_DB_HOST' value='127.0.0.1'/>
+        <env name='LEGACY_DB_PORT' value='3306'/>
+        <env name='LEGACY_DB_DATABASE' value='pocacoop_ee'/>
+        <env name='LEGACY_DB_USERNAME' value='root'/>
+        <env name='LEGACY_DB_PASSWORD' value='password'/>
+        <env name='LEGACY_DB_PREFIX' value='exp_'/>
+    </php>
+
 </phpunit>
