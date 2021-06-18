@@ -14,7 +14,8 @@ class LegacyForumCategoryScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('forum_is_cat', '=', 'y')
+        $builder->where('board_id', '=', 1)
+            ->where('forum_is_cat', '=', 'y')
             ->whereNull('forum_parent');
     }
 }

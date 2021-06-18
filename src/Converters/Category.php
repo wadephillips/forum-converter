@@ -16,7 +16,7 @@ class Category
         if ( !empty($options) ) {
             dd('need to handle the options!');
         }
-        
+
         $status = [
             'o' => 'publish',
             'p' => 'private',
@@ -67,9 +67,10 @@ class Category
             '_bbp_last_active_time' => 0,
 
             '_bbp_forum_type' => 'category',
+            '_bbp_forum_id' => $category->ID, //todo is this right
 
             //legacy meta
-            '_bbp_forum_id' => $legacyCategory->forum_id,
+            '_bbp_legacy_forum_id' => $legacyCategory->forum_id, //todo verify
             '_bbp_forum_parent_id' => 0,
 
             //Counts for topics in this forum
