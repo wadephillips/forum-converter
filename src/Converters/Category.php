@@ -3,17 +3,15 @@
 
 namespace wadelphillips\ForumConverter\Converters;
 
-
 use Corcel\Model\Option;
 use wadelphillips\ForumConverter\Models\Category as CategoryPost;
 use wadelphillips\ForumConverter\Models\LegacyCategory;
-
 
 class Category
 {
     public static function migrate(LegacyCategory $legacyCategory, array $options = []): CategoryPost
     {
-        if ( !empty($options) ) {
+        if (! empty($options)) {
             dd('need to handle the options!');
         }
 
@@ -21,7 +19,7 @@ class Category
             'o' => 'publish',
             'p' => 'private',
             'c' => 'hidden',
-            'h' => 'draft'
+            'h' => 'draft',
         ];
 
         $category = new CategoryPost();

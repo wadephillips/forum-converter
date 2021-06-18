@@ -25,5 +25,4 @@ class LegacyForum extends Model
     {
         return Str::slug($this->forum_name);
     }
-
 }

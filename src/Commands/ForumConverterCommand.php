@@ -8,10 +8,9 @@ use wadelphillips\ForumConverter\Converters\Forum;
 //use wadelphillips\ForumConverter\Converters\Topic;
 //use wadelphillips\ForumConverter\Converters\Comment;
 use wadelphillips\ForumConverter\Models\LegacyCategory;
+use wadelphillips\ForumConverter\Models\LegacyComment;
 use wadelphillips\ForumConverter\Models\LegacyForum;
 use wadelphillips\ForumConverter\Models\LegacyTopic;
-use wadelphillips\ForumConverter\Models\LegacyComment;
-
 
 class ForumConverterCommand extends Command
 {
@@ -29,31 +28,31 @@ class ForumConverterCommand extends Command
     {
         $options = $this->options();
 
-        if ( $options[ 'all' ] ) {
+        if ($options[ 'all' ]) {
             $this->info('Migrating All Forum Components...');
             //todo: add a class to handle this option, new Components::migrate
             $this->migrateAllComponents();
         }
 
-        if ( $options[ 'categories' ] ) {
+        if ($options[ 'categories' ]) {
             $this->info('Migrating Forum Categories...');
             //todo: add a class to handle this option, new Categories::migrate
             $this->migrateCategories();
         }
 
-        if ( $options[ 'forums' ] ) {
+        if ($options[ 'forums' ]) {
             $this->info('Migrating Forums...');
             //todo: add a class to handle this option, new Forums::migrate
             $this->migrateForums();
         }
 
-        if ( $options[ 'topics' ] ) {
+        if ($options[ 'topics' ]) {
             $this->info('Migrating Forum Topics...');
             //todo: add a class to handle this option, new Topics::migrate
             $this->migrateTopics();
         }
 
-        if ( $options[ 'comments' ] ) {
+        if ($options[ 'comments' ]) {
             $this->info('Migrating Forum Comments...');
             //todo: add a class to handle this option, new Comments::migrate
             $this->migrateComments();
@@ -94,10 +93,11 @@ class ForumConverterCommand extends Command
     private function migrate($from, $to)
     {
         //get the items that we need to convert
-        $items = $this->withProgressBar($from::all(), function ($item) use ($to){
+        $items = $this->withProgressBar($from::all(), function ($item) use ($to) {
             // and then convert them into the new type
             return $to::migrate($item);
         });
+
         return $items;
     }
 }

@@ -2,13 +2,13 @@
 
 namespace wadelphillips\ForumConverter\Tests;
 
+use function array_filter;
+use function env;
+use function extension_loaded;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use PDO;
 use wadelphillips\ForumConverter\ForumConverterServiceProvider;
-use function array_filter;
-use function env;
-use function extension_loaded;
 
 class TestCase extends Orchestra
 {

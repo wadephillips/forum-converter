@@ -3,19 +3,17 @@
 
 namespace wadelphillips\ForumConverter\Converters;
 
-
 use Corcel\Model\Option;
+use function dd;
 use wadelphillips\ForumConverter\Models\Category as Category;
 use wadelphillips\ForumConverter\Models\Forum as ForumPost;
-use wadelphillips\ForumConverter\Models\LegacyCategory;
 use wadelphillips\ForumConverter\Models\LegacyForum;
-use function dd;
 
 class Forum
 {
     public static function migrate(LegacyForum $legacyForum, array $options = []): ForumPost
     {
-        if ( !empty($options) ) {
+        if (! empty($options)) {
             dd('need to handle the options!');
         }
 
@@ -23,7 +21,7 @@ class Forum
             'o' => 'publish',
             'p' => 'private',
             'c' => 'hidden',
-            'h' => 'draft'
+            'h' => 'draft',
         ];
 
         $parent = Category::hasMeta('_bbp_legacy_forum_id', $legacyForum->forum_parent)->first();
@@ -90,5 +88,4 @@ class Forum
 
         return $forum;
     }
-
 }
