@@ -69,9 +69,10 @@ class Forum
             '_bbp_last_active_time' => 0,
 
             '_bbp_forum_type' => 'forum',
+            '_bbp_forum_id' => $forum->ID,
 
             //legacy meta
-            '_bbp_forum_id' => $forum->ID,
+            '_bbp_legacy_forum_id' => $legacyForum->forum_id, //todo verify
             '_bbp_forum_parent_id' => $parent->ID,//todo check
 
             //Counts for topics in this forum
