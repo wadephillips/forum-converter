@@ -15,21 +15,24 @@ use wadelphillips\ForumConverter\Database\Factories\LegacyCategoryFactory;
 class LegacyCategory extends Model
 {
     use HasFactory;
-    /**
-     * @var string
-     */
+
     protected $connection = 'legacy';
 
     protected $table = "forums";
 
+    protected static function booted()
+    {
+        //register a global scope for legacy forums
+        static::addGlobalScope(new LegacyForumCategoryScope);
+    }
+
+    /**
+     * Return a slugified version of the forum name
+     * @return string
+     */
     public function getSlugAttribute()
     {
         return Str::slug($this->forum_name);
-    }
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new LegacyForumCategoryScope);
     }
 
     /**

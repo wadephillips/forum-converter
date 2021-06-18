@@ -13,7 +13,8 @@ class LegacyForumScope implements \Illuminate\Database\Eloquent\Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('forum_is_cat', '=', 'n')
+        $builder->where('board_id', '=', 1)
+            ->where('forum_is_cat', '=', 'n')
             ->where('forum_parent', '>', 0);
     }
 }
