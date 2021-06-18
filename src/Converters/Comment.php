@@ -3,9 +3,9 @@
 
 namespace wadelphillips\ForumConverter\Converters;
 
-use wadelphillips\ForumConverter\Models\LegacyComment;
-use wadelphillips\ForumConverter\Models\Comment as CommentPost;
 use function dd;
+use wadelphillips\ForumConverter\Models\Comment as CommentPost;
+use wadelphillips\ForumConverter\Models\LegacyComment;
 
 class Comment
 {

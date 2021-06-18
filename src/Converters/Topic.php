@@ -3,12 +3,11 @@
 
 namespace wadelphillips\ForumConverter\Converters;
 
-
 use Corcel\Model\Option;
+use function dd;
 use wadelphillips\ForumConverter\Models\Forum;
 use wadelphillips\ForumConverter\Models\LegacyTopic;
 use wadelphillips\ForumConverter\Models\Topic as TopicPost;
-use function dd;
 
 class Topic
 {
@@ -22,7 +21,7 @@ class Topic
 
         $status = [
             'o' => 'open', //todo are these the correct values for wp?
-            'c' => 'closed'
+            'c' => 'closed',
         ];
 
 

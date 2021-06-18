@@ -6,7 +6,6 @@ namespace wadelphillips\ForumConverter\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumScope;
 use wadelphillips\ForumConverter\Contracts\Scopes\LegacyTopicScope;
 
 /**
@@ -76,7 +75,6 @@ class LegacyTopic extends Model
         return Carbon::parse($this->last_post_date)
             ->setTimezone('America/Los_Angeles');
     }
-
 
     public function getSlugAttribute($value)
     {

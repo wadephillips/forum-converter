@@ -12,6 +12,4 @@ class Topic extends Post
     protected $casts = [
         'post_date' => 'datetime',
     ];
-
-
 }
