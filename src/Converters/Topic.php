@@ -17,55 +17,65 @@ class Topic
             dd('need to handle the options!');
         }
 
-        $parent = Forum::hasMeta('_bbp_legacy_forum_id', $legacyTopic->forum_id);
+        $parent = Forum::hasMeta('_bbp_legacy_forum_id', $legacyTopic->forum_id)
+            ->get()
+            ->first();
 
+        //look up table for translating the status of a topic
         $status = [
-            'o' => 'open', //todo are these the correct values for wp?
+            'o' => 'publish',
             'c' => 'closed',
         ];
 
+        //look up table for translating stickiness
+        $sticky = [
+            'y' => 'sticky',
+            'n' => 'normal',
+        ];
 
         $topic = new TopicPost();
 
         $topic->post_author = $legacyTopic->author_id;
         $topic->post_content = $legacyTopic->body;
+        $topic->post_content_filtered = $legacyTopic->body;
+        //todo we need an excerpt
+        $topic->post_excerpt = '';
         $topic->post_title = $legacyTopic->title;
         $topic->post_name = $legacyTopic->slug;
-        $topic->post_parent = $parent->ID;//todo Forumvia meta
+        $topic->post_parent = $parent->ID;//todo Forum via meta
 
         //dates
         $topic->post_date = $legacyTopic->topic_date_local;
         $topic->post_date_gmt = $legacyTopic->topic_date;
-        $topic->post_modified = $legacyTopic->topic_edit_date;
-        $topic->post_modified_gmt = $legacyTopic->topic_edit_local_date;
+        $topic->post_modified = $legacyTopic->topic_modified_date_local;
+        $topic->post_modified_gmt = $legacyTopic->topic_modified_date;
 
 //        $topic->post_ = $legacyTopic->;
 
-        //todo ****
         //forum meta
         $topic->post_type = 'topic';
-        $topic->post_parent = $parent->ID; // todo check
+        $topic->post_parent = $parent->ID;
 //        $topic->menu_order = $legacyTopic->forum_order; todo not sure if we need this
 
         $topic->post_status = $status[ $legacyTopic->status ];
 
-        $topic->comment_status = 'closed';  //Todo resume  comments should be open, do we need to set this?
+        $topic->comment_status = $status[ $legacyTopic->status ];
         $topic->ping_status = 'closed';
         $topic->to_ping = '';
         $topic->pinged = '';
 //        $topic->guid = Option::get('home') . 'forums/forum/' . $legacyForum->slug . '/' todo??
 
-        //todo end ***
 
 
         $topic->save();
 
         //in post meta
+
         $topic->saveMeta([
             '_bbp_legacy_topic_id' => $legacyTopic->topic_id,
 
             '_bbp_author_ip' => $legacyTopic->ip_address,
-            '_bbp_sticky_status' => $legacyTopic->sticky,//todo check the sticky status callback to make sure we're getting good data
+            '_bbp_sticky_status' => $sticky[$legacyTopic->sticky],
             '_bbp_last_active_time' => $legacyTopic->topic_edit_date,
 
 //            '_bbp_' => $legacyTopic->,

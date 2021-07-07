@@ -43,9 +43,9 @@ class LegacyTopic extends Model
      * Accessors
      * */
 
-    public function getTopicDateAttribute()
+    public function getTopicDateAttribute($value)
     {
-        return Carbon::parse($this->topic_date);
+        return Carbon::parse($value);
     }
 
     public function getTopicDateLocalAttribute()
