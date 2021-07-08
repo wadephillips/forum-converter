@@ -46,9 +46,7 @@ class Forum
         $forum->post_parent = $parent->ID; // todo check
         $forum->menu_order = $legacyForum->forum_order;
 
-        //todo Refactor to calculate post_status based on permissions of the forum would be better. Other wise will need to manually check all imported forums so as not to expose sensitive material to public
-//        $forum->post_status = $status[ $legacyCategory->forum_status ];
-        $forum->post_status = 'closed';
+        $forum->post_status = $legacyForum->shouldHide()? $status['p'] : $status['o'];
 
         $forum->comment_status = 'closed';
         $forum->ping_status = 'closed';
@@ -89,4 +87,5 @@ class Forum
 
         return $forum;
     }
+
 }

@@ -42,9 +42,7 @@ class Category
         $category->post_parent = 0;
         $category->menu_order = $legacyCategory->forum_order;
 
-        //todo Refactor to calculate post_status based on permissions of the forum would be better. Other wise will need to manually check all imported forums so as not to expose sensitive material to public
-//        $category->post_status = $status[ $legacyCategory->forum_status ];
-        $category->post_status = 'closed';
+        $category->post_status = $legacyCategory->shouldHide()? $status['p'] : $status['o'];
 
         $category->comment_status = 'closed';
         $category->ping_status = 'closed';

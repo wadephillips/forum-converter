@@ -37,7 +37,7 @@ class Topic
 
         $topic->post_author = $legacyTopic->author_id;
         $topic->post_content = $legacyTopic->body;
-        $topic->post_content_filtered = $legacyTopic->body;
+        $topic->post_content_filtered = '';//$legacyTopic->body
         //todo we need an excerpt
         $topic->post_excerpt = '';
         $topic->post_title = $legacyTopic->title;
