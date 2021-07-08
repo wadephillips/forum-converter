@@ -3,13 +3,13 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumScope;
 use function array_diff;
 use function explode;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use function trim;
 use function unserialize;
+use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumScope;
 
 class LegacyForum extends Model
 {
@@ -38,7 +38,8 @@ class LegacyForum extends Model
     public function shouldHide(): bool
     {
         //pull permissions out into an array
-        $read = explode('|',
+        $read = explode(
+            '|',
             trim(unserialize($this->forum_permissions)[ 'can_view_forum' ], '|')
         );
         // if permissions are a subset of these groups they should be hidden
