@@ -43,6 +43,7 @@ class LegacyForum extends Model
             trim(unserialize($this->forum_permissions)[ 'can_view_forum' ], '|')
         );
         // if permissions are a subset of these groups they should be hidden
-        return empty(array_diff($read, [ '6', '9', '11', '14' ]));
+        return empty(array_diff($read, config('forum-converter.forum.legacy.privateGroups')
+        ));
     }
 }

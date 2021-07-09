@@ -24,4 +24,9 @@ return [
             ],
         ],
     ],
+    'forum' => [
+        'legacy' => [
+            'privateGroups' => ['6','9','11','14'],
+        ],
+    ],
 ];
