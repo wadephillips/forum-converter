@@ -46,7 +46,7 @@ class Forum
         $forum->post_parent = $parent->ID; // todo check
         $forum->menu_order = $legacyForum->forum_order;
 
-        $forum->post_status = $legacyForum->shouldHide()? $status['p'] : $status['o'];
+        $forum->post_status = $legacyForum->shouldHide()? $status['c'] : $status['o'];
 
         $forum->comment_status = 'closed';
         $forum->ping_status = 'closed';

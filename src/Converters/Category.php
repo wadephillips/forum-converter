@@ -42,7 +42,7 @@ class Category
         $category->post_parent = 0;
         $category->menu_order = $legacyCategory->forum_order;
 
-        $category->post_status = $legacyCategory->shouldHide()? $status['p'] : $status['o'];
+        $category->post_status = $legacyCategory->shouldHide() ? $status['c'] : $status['o'];
 
         $category->comment_status = 'closed';
         $category->ping_status = 'closed';
