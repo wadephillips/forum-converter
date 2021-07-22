@@ -38,11 +38,9 @@ class Topic
         $topic->post_author = $legacyTopic->author_id;
         $topic->post_content = $legacyTopic->body;
         $topic->post_content_filtered = '';//$legacyTopic->body
-        //todo we need an excerpt
         $topic->post_excerpt = '';
         $topic->post_title = $legacyTopic->title;
         $topic->post_name = $legacyTopic->slug;
-        $topic->post_parent = $parent->ID;//todo Forum via meta
 
         //dates
         $topic->post_date = $legacyTopic->topic_date_local;
@@ -55,7 +53,6 @@ class Topic
         //forum meta
         $topic->post_type = 'topic';
         $topic->post_parent = $parent->ID;
-//        $topic->menu_order = $legacyTopic->forum_order; todo not sure if we need this
 
         $topic->post_status = $status[ $legacyTopic->status ];
 
@@ -64,8 +61,6 @@ class Topic
         $topic->to_ping = '';
         $topic->pinged = '';
 //        $topic->guid = Option::get('home') . 'forums/forum/' . $legacyForum->slug . '/' todo??
-
-
 
         $topic->save();
 
