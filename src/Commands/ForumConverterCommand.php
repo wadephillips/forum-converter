@@ -53,6 +53,11 @@ class ForumConverterCommand extends Command
         if ($options[ 'comments' ]) {
             $this->migrateComments();
         }
+
+        if ($options[ 'attachments' ]) {
+            $this->migrateAttachments();
+        }
+
         $this->newLine(2);
         $this->comment('All done');
     }
@@ -63,7 +68,7 @@ class ForumConverterCommand extends Command
         $this->migrateForums();
         $this->migrateTopics();
         $this->migrateComments();
-        //todo what should we return?
+        $this->migrateAttachments();
     }
 
     private function migrateCategories()
@@ -96,6 +101,14 @@ class ForumConverterCommand extends Command
         $this->info('Migrating Forum Comments...');
 
         return $this->migrate(LegacyComment::class, Comment::class);
+    }
+
+    private function migrateAttachments()
+    {
+        $this->newLine(1);
+        $this->info('Migrating Forum Attachements...');
+        return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
+
     }
 
     private function migrate($from, $converter)

@@ -33,6 +33,19 @@ class Topic
             'n' => 'normal',
         ];
 
+        /*
+         * todo
+         * so the topics migration works!! yay!! 🎆
+         * but I see some issues, esp with the content
+         * its full of crappy html-ish tags, which don't work in wp. EG [strong][/strong]
+         * How do we fix that?
+         * Probably going to need to iterate across the LegacyTopics and replace the bad tags urls/ strings
+         *
+         * Dates on the topics inside of their forum are wrong initially after import.  Just need to do a BuddyBoss Repair " Recalculate last activity in each discussion and forum"
+         *
+         * Also attachments and forum links are going to break.  How are we going to redirect all the old forum links....
+         * */
+
         $topic = new TopicPost();
 
         $topic->post_author = $legacyTopic->author_id;
