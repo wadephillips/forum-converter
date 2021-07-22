@@ -11,7 +11,6 @@ use wadelphillips\ForumConverter\Converters\Topic;
 use wadelphillips\ForumConverter\Models\LegacyCategory;
 use wadelphillips\ForumConverter\Models\LegacyComment;
 use wadelphillips\ForumConverter\Models\LegacyForum;
-use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
 use wadelphillips\ForumConverter\Models\LegacyTopic;
 
 class ForumConverterCommand extends Command
@@ -47,7 +46,8 @@ class ForumConverterCommand extends Command
         }
 
         if ($options[ 'topics' ]) {
-            $this->migrateTopics();$this->newLine(1);
+            $this->migrateTopics();
+            $this->newLine(1);
         }
 
         if ($options[ 'comments' ]) {
@@ -70,6 +70,7 @@ class ForumConverterCommand extends Command
     {
         $this->newLine(1);
         $this->info('Migrating Forum Categories...');
+
         return $this->migrate(LegacyCategory::class, Category::class);
     }
 
@@ -77,6 +78,7 @@ class ForumConverterCommand extends Command
     {
         $this->newLine(1);
         $this->info('Migrating Forums...');
+
         return $this->migrate(LegacyForum::class, Forum::class);
     }
 
@@ -84,6 +86,7 @@ class ForumConverterCommand extends Command
     {
         $this->newLine(1);
         $this->info('Migrating Forum Topics...');
+
         return $this->migrate(LegacyTopic::class, Topic::class);
     }
 
@@ -91,6 +94,7 @@ class ForumConverterCommand extends Command
     {
         $this->newLine(1);
         $this->info('Migrating Forum Comments...');
+
         return $this->migrate(LegacyComment::class, Comment::class);
     }
 
