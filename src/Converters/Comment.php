@@ -4,16 +4,16 @@
 namespace wadelphillips\ForumConverter\Converters;
 
 use Corcel\Model\User;
-use wadelphillips\ForumConverter\Models\Topic;
+use function dd;
 use wadelphillips\ForumConverter\Models\Comment as CommentPost;
 use wadelphillips\ForumConverter\Models\LegacyComment;
-use function dd;
+use wadelphillips\ForumConverter\Models\Topic;
 
 class Comment
 {
     public static function migrate(LegacyComment $legacyComment, array $options = []): CommentPost
     {
-        if ( !empty($options) ) {
+        if (! empty($options)) {
             dd('need to handle the options!');
         }
 
@@ -29,7 +29,7 @@ class Comment
 
         $comment = new CommentPost();
 
-        $comment->post_author= $legacyComment->author_id;
+        $comment->post_author = $legacyComment->author_id;
         $comment->post_content = $legacyComment->body;
         $comment->post_content_filtered = '';
         $comment->post_title = '';

@@ -3,8 +3,6 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-
 class LegacyForumAttachment
 {
-
 }

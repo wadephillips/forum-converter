@@ -53,7 +53,9 @@ class LegacyCategory extends Model
             trim(unserialize($this->forum_permissions)['can_view_forum'], '|')
         );
         // if permissions are a subset of these groups they should be hidden
-        return empty(array_diff($read, config('forum-converter.forum.legacy.privateGroups')
+        return empty(array_diff(
+            $read,
+            config('forum-converter.forum.legacy.privateGroups')
         ));
     }
 

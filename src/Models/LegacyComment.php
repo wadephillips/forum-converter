@@ -6,7 +6,6 @@ namespace wadelphillips\ForumConverter\Models;
 use Carbon\Carbon;
 use Corcel\Model\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
 
 /**
@@ -25,7 +24,6 @@ class LegacyComment extends Model
     protected $table = 'forum_posts';
 
     protected $primaryKey = 'post_id';
-
 
     /*
      * Relationships
@@ -78,5 +76,4 @@ class LegacyComment extends Model
         return Carbon::parse($this->post_edit_date)
             ->setTimezone('America/Los_Angeles');
     }
-
 }
