@@ -7,10 +7,12 @@ use wadelphillips\ForumConverter\Converters\Category;
 use wadelphillips\ForumConverter\Converters\Comment;
 use wadelphillips\ForumConverter\Converters\Forum;
 use wadelphillips\ForumConverter\Converters\Topic;
+use wadelphillips\ForumConverter\Converters\ForumAttachment;
 //use wadelphillips\ForumConverter\Converters\Comment;
 use wadelphillips\ForumConverter\Models\LegacyCategory;
 use wadelphillips\ForumConverter\Models\LegacyComment;
 use wadelphillips\ForumConverter\Models\LegacyForum;
+use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
 use wadelphillips\ForumConverter\Models\LegacyTopic;
 
 class ForumConverterCommand extends Command

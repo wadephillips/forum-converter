@@ -8,6 +8,10 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
 
+/**
+ * @property  extension
+ * @property  filename
+ */
 class LegacyForumAttachment
 {
     /**
@@ -21,38 +25,38 @@ class LegacyForumAttachment
 
     protected $dateFormat = 'U';
 
-    /*
-     * Global Scope
-     * */
-
-    protected static function booted()
-    {
-        static::addGlobalScope(new BoardScope);
-    }
+//    /*
+//     * Global Scope
+//     * */
+//
+//    protected static function booted()
+//    {
+//        static::addGlobalScope(new BoardScope);
+//    }
 
     /*
      * Accessors
      * */
 
-    public function getDateAttribute($value)
+    public function getDateAttribute()
     {
-        return Carbon::parse($value);
+        return Carbon::parse($this->attachment_date);
     }
 
     public function getDateLocalAttribute()
     {
-        return Carbon::parse($this->topic_date)
+        return Carbon::parse($this->attachment_date)
             ->setTimezone('America/Los_Angeles');
     }
 
     public function getModifiedDateAttribute()
     {
-        return Carbon::parse($this->topic_edit_date);
+        return Carbon::parse($this->attachment_edit_date);
     }
 
     public function getModifiedDateLocalAttribute()
     {
-        return Carbon::parse($this->topic_edit_date)
+        return Carbon::parse($this->attachment_edit_date)
             ->setTimezone('America/Los_Angeles');
     }
 
