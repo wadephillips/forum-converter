@@ -3,19 +3,18 @@
 
 namespace wadelphillips\ForumConverter\Converters;
 
-
 use Illuminate\Support\Str;
-use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
-use wadelphillips\ForumConverter\Models\ForumAttachment as ForumAttachmentPost;
 use function mime_content_type;
 use function storage_path;
+use wadelphillips\ForumConverter\Models\ForumAttachment as ForumAttachmentPost;
+use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
 
 class ForumAttachment
 {
     public static function migrate(LegacyForumAttachment $legacyAttachment, array $options = []): ForumAttachmentPost
     {
         //todo resume: need to get parent info, I think we can set up an if else block?  Does the attachment belong to a Topic?
-        if($legacyAttachment->parentIsTopic()){
+        if ($legacyAttachment->parentIsTopic()) {
             $parentCommentId = 0; //Comment::hasMeta('_bbp_coment
             $parentTopic = Something;
             $parentForumId = $parentTopic->ID;

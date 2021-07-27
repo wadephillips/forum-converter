@@ -3,7 +3,6 @@
 
 namespace wadelphillips\ForumConverter\Models;
 
-
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
@@ -59,7 +58,6 @@ class LegacyForumAttachment
         return Carbon::parse($this->attachment_edit_date)
             ->setTimezone('America/Los_Angeles');
     }
-
 
     public function getSlugAttribute($value)
     {
