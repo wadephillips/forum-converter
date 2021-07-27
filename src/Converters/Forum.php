@@ -36,6 +36,7 @@ class Forum
         $forum->post_author = 1;
 
         //dates
+        //todo review this, is this right, hardly seems like it
         $forum->post_date = '2012-01-01 00:00:00';
         $forum->post_date_gmt = '2012-01-01 08:00:00';
         $forum->post_modified = '2012-01-01 00:00:00';
@@ -52,7 +53,7 @@ class Forum
         $forum->ping_status = 'closed';
         $forum->to_ping = '';
         $forum->pinged = '';
-        $forum->guid = Option::get('home') . 'forums/forum/' . $legacyForum->slug . '/';
+        $forum->guid = Option::get('home') . 'forums/forum/' . $parent->slug . '/' . $legacyForum->slug . '/';
 
         $forum->save();
 

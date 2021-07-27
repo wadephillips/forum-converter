@@ -73,7 +73,7 @@ class Topic
         $topic->ping_status = 'closed';
         $topic->to_ping = '';
         $topic->pinged = '';
-//        $topic->guid = Option::get('home') . 'forums/forum/' . $legacyForum->slug . '/' todo??
+        $topic->guid = Option::get('home') . 'forums/forums/discussion/' . $topic->slug . '/';
 
         $topic->save();
 
