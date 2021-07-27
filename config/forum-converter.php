@@ -29,4 +29,16 @@ return [
             'privateGroups' => ['6','9','11','14'],
         ],
     ],
+    'filesystems' => [
+        'disks' => [
+            'legacy_forum_attachment' => [
+                'driver' => 'local',
+                'root' => env('LEGACY_FORUM_ATTACHMENTS_PATH'),
+            ],
+            'wp_forum_attachment' => [
+                'driver' => 'local',
+                'root' => env('WP_FORUM_ATTACHMENTS_PATH'),
+            ],
+        ],
+    ],
 ];

@@ -29,5 +29,13 @@ class ForumConverterServiceProvider extends PackageServiceProvider
             'database.connections.legacy',
             config('forum-converter.database.connections.legacy')
         );
+        config()->set(
+            'filesystems.disks.legacy_forum_attachment',
+            config('forum-converter.filesystems.disks.legacy_forum_attachment')
+        );
+        config()->set(
+            'filesystems.disks.wp_forum_attachment',
+            config('forum-converter.filesystems.disks.wp_forum_attachment')
+        );
     }
 }

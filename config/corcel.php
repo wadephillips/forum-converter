@@ -3,6 +3,7 @@
 use wadelphillips\ForumConverter\Models\Category;
 use wadelphillips\ForumConverter\Models\Comment;
 use wadelphillips\ForumConverter\Models\Forum;
+use wadelphillips\ForumConverter\Models\ForumAttachment;
 use wadelphillips\ForumConverter\Models\Topic;
 
 return [
@@ -41,6 +42,7 @@ return [
         'forum' => Forum::class,
         'topic' => Topic::class,
         'comment' => Comment::class,
+        'attachment' => ForumAttachment::class,
     ],
 
     /*

@@ -5,6 +5,7 @@ namespace wadelphillips\ForumConverter\Models;
 
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
 
@@ -12,7 +13,7 @@ use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
  * @property  extension
  * @property  filename
  */
-class LegacyForumAttachment
+class LegacyForumAttachment extends Model
 {
     /**
      * @var string
@@ -51,13 +52,12 @@ class LegacyForumAttachment
 
     public function getModifiedDateAttribute()
     {
-        return Carbon::parse($this->attachment_edit_date);
+        return $this->getDateAttribute();
     }
 
     public function getModifiedDateLocalAttribute()
     {
-        return Carbon::parse($this->attachment_edit_date)
-            ->setTimezone('America/Los_Angeles');
+        return $this->getDateLocalAttribute();
     }
 
 
@@ -65,4 +65,10 @@ class LegacyForumAttachment
     {
         return Str::slug($this->title);
     }
+
+    public function parentIsComment()
+    {
+        return $this->post_id === 0;
+    }
+
 }

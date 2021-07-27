@@ -11,11 +11,12 @@ class ForumAttachment extends Post
 
     public function bpDocument()
     {
-        return $this->hasOne(BpDocument);//Todo need to make an Illuminate/Model
+        return $this->hasOne(BpDocument::class);//Todo need to make an Illuminate/Model
     }
 
     public function bpDocumentMeta()
     {
         return $this->hasMany(BpDocumentMeta::class); // todo need to make an Illuminate/Model
     }
+
 }
