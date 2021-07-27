@@ -18,11 +18,12 @@ use wadelphillips\ForumConverter\Models\LegacyTopic;
 class ForumConverterCommand extends Command
 {
     public $signature = 'ee-forum:migrate
-                        {--a|all : Migrate all categories, forums, topics, and comments at one time }
+                        {--A|all : Migrate all categories, forums, topics, and comments at one time }
                         {--C|categories : Migrate the categories only}
                         {--f|forums : Migrate the forums only}
                         {--t|topics : Migrate the topics only}
                         {--c|comments : Migrate the comments only}
+                        {--a|attachments : Migrate the attachments only}
                         {--l|limit=5 : Limit the number of components to migrate}';
 
     public $description = 'Migrates ExpressionEngine 2 forum components into a Wordpress structure suitable for use with BBPress or Buddy Boss';
@@ -31,11 +32,11 @@ class ForumConverterCommand extends Command
     {
         $options = $this->options();
 
-        if ($options[ 'all' ]) {
+        if ($options[ 'all' ] && $this->confirm('Are you sure you want to migrate all categories, forums, topics, comments, and attachments at one time??  This could take a while....')) {
+
             $this->newLine(1);
             $this->info('Migrating All Forum Components...');
 
-            //todo: add a class to handle this option, new Components::migrate
             $this->migrateAllComponents();
         }
 
@@ -108,7 +109,7 @@ class ForumConverterCommand extends Command
     private function migrateAttachments()
     {
         $this->newLine(1);
-        $this->info('Migrating Forum Attachements...');
+        $this->info('Migrating Forum Attachments...');
         return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
 
     }
