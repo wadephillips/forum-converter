@@ -4,8 +4,10 @@
 namespace wadelphillips\ForumConverter\Converters;
 
 
+use Illuminate\Http\File;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Models\Comment;
 use wadelphillips\ForumConverter\Models\ForumAttachment as ForumAttachmentPost;
@@ -114,11 +116,25 @@ class ForumAttachment
             ,
             'bp_document_ids' => $bpDocumentId
         ]);
-        //legacy attachment is an actual file that we need to move from legacy storage to current storage
-        //todo figure out the post_mime_type
-        $attachment->post_mime_type = mime_content_type(storage_path('/file/name'));
 
-        $attachment = new ForumAttachmentPost();
+        //legacy attachment is an actual file that we need to move from legacy storage to current storage
+        if (Storage::disk('legacy_forum_attachment')->get($legacyAttachment->filehash)) {
+            //get file
+            $file = Storage::disk('legacy_forum_attachment')->get($legacyAttachment->filehash);
+            //rename and save to new storage location
+            $storageDirectory = Carbon::now()->year. '/' .
+                Carbon::now()->month;
+            $saved = Storage::disk('wp_forum_attachment')->putFileAs( $storageDirectory ,new File($legacyAttachment->filename), $legacyAttachment->filename);
+            //update meta bd_document_saved
+            if ($saved) {
+                $attachment->saveMeta(['bp_document_saved' => 1]);
+            }
+            //update attachment mime_type
+            $attachment->post_mime_type = mime_content_type($saved);
+            $attachment->save();
+
+
+        }
 
         return $attachment;
     }
