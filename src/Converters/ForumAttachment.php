@@ -4,6 +4,7 @@
 namespace wadelphillips\ForumConverter\Converters;
 
 
+use Exception;
 use Illuminate\Http\File;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -14,24 +15,26 @@ use wadelphillips\ForumConverter\Models\ForumAttachment as ForumAttachmentPost;
 use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
 use wadelphillips\ForumConverter\Models\Topic;
 use function mime_content_type;
-use function storage_path;
 
 class ForumAttachment
 {
     public static function migrate(LegacyForumAttachment $legacyAttachment, array $options = []): ForumAttachmentPost
     {
-        //get new parent ids of the legacy attachment
-        $parentCommentId = ($legacyAttachment->parentIsComment()) ?
-            Comment::hasMeta('_bbp_legacy_post_id', $legacyAttachment->post_id)
-                ->get()
-                ->first()
-                ->ID
-            : 0; //Comment::hasMeta('_bbp_coment
 
 
-        $parentTopic = Topic::hasMeta('_bpp_legacy_topic_id', $legacyAttachment->topic_id);
-        $parentTopicId = $parentTopic->ID;
-        $parentForumId = $parentTopic->post_parent;
+        try {//get new parent ids of the legacy attachment
+            $parentCommentId = ($legacyAttachment->parentIsComment()) ?
+                Comment::hasMeta('_bbp_legacy_post_id', $legacyAttachment->post_id)
+                    ->get()
+                    ->first()
+                    ->ID
+                : 0;//Comment::hasMeta('_bbp_coment
+            $parentTopic = Topic::hasMeta('_bbp_legacy_topic_id', $legacyAttachment->topic_id)->first();
+            $parentTopicId = $parentTopic->ID;
+            $parentForumId = $parentTopic->post_parent;
+        } catch ( Exception $e ) {
+            throw new Exception('There is a problem importing legacy attachment #' . $legacyAttachment->attachment_id, 0, $e);
+        }
 
 
         if ( !empty($options) ) {
@@ -111,29 +114,36 @@ class ForumAttachment
             'bp_document_saved' => '0',
             '_wp_attached_file' => 'bb_documents/' .
                 Carbon::now()->year. '/' .
-                Carbon::now()->month. '/' .
+                Carbon::now()->format('m'). '/' .
                 $attachment->filename
             ,
             'bp_document_ids' => $bpDocumentId
         ]);
 
         //legacy attachment is an actual file that we need to move from legacy storage to current storage
-        if (Storage::disk('legacy_forum_attachment')->get($legacyAttachment->filehash)) {
+        if (Storage::disk('legacy_forum_attachment')->exists($legacyAttachment->fullHash)) {
             //get file
-            $file = Storage::disk('legacy_forum_attachment')->get($legacyAttachment->filehash);
+            $legacyPath = Storage::disk('legacy_forum_attachment')->path($legacyAttachment->fullHash);
             //rename and save to new storage location
             $storageDirectory = Carbon::now()->year. '/' .
-                Carbon::now()->month;
-            $saved = Storage::disk('wp_forum_attachment')->putFileAs( $storageDirectory ,new File($legacyAttachment->filename), $legacyAttachment->filename);
-            //update meta bd_document_saved
+                Carbon::now()->format('m');
+            $saved = Storage::disk('wp_forum_attachment')->putFileAs( $storageDirectory ,new File($legacyPath), $legacyAttachment->filename);
             if ($saved) {
+                //update meta bd_document_saved
                 $attachment->saveMeta(['bp_document_saved' => 1]);
+                //update attachment mime_type
+                $newPath = Storage::disk('wp_forum_attachment')->path($saved);
+                if (strlen(mime_content_type($newPath)) > 100) {
+                    echo 'Check mime type for attachment with post_id #'. $attachment->ID;
+                }
+                $attachment->post_mime_type = Str::substr(mime_content_type($newPath),0,100);
+                $attachment->save();
             }
-            //update attachment mime_type
-            $attachment->post_mime_type = mime_content_type($saved);
-            $attachment->save();
 
 
+        } else {
+            dump('looks like the attachment doesn\'t exist');
+            dump($legacyAttachment->fullHash);
         }
 
         return $attachment;

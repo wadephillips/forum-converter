@@ -26,18 +26,22 @@ class LegacyForumAttachment extends Model
 
     protected $dateFormat = 'U';
 
-//    /*
-//     * Global Scope
-//     * */
-//
-//    protected static function booted()
-//    {
-//        static::addGlobalScope(new BoardScope);
-//    }
+    /*
+     * Global Scope
+     * */
+
+    protected static function booted()
+    {
+        static::addGlobalScope(new BoardScope);
+    }
 
     /*
      * Accessors
      * */
+
+    public function getFullHashAttribute() {
+        return $this->filehash . $this->extension;
+    }
 
     public function getDateAttribute()
     {
@@ -68,7 +72,7 @@ class LegacyForumAttachment extends Model
 
     public function parentIsComment()
     {
-        return $this->post_id === 0;
+        return $this->post_id !== 0;
     }
 
 }
