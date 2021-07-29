@@ -24,7 +24,6 @@ class Comment
                 ->get()
                 ->first();
         });
-        ;
 
 
         $comment = new CommentPost();

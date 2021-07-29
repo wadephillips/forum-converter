@@ -121,8 +121,6 @@ class ForumConverterCommand extends Command
         $this->info('Migrating Forum Attachments...');
 
         return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
-
-        return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
     }
 
     private function migrate($from, $converter)
