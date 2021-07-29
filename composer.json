@@ -1,8 +1,8 @@
 {
-    "name": "wadelphillips/forum-converter",
+    "name": "wadephillips/forum-converter",
     "description": "This package provides a helpful route to migrate Expression Engine 2 Forums into BBPress/ BuddyBoss forums.",
     "keywords": [
-        "wadelphillips",
+        "wadephillips",
         "laravel",
         "forum-converter"
     ],
