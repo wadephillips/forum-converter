@@ -12,7 +12,7 @@ class Comment
 {
     public static function migrate(LegacyComment $legacyComment, array $options = []): CommentPost
     {
-        if ( !empty($options) ) {
+        if (! empty($options)) {
             dd('need to handle the options!');
         }
 
@@ -23,7 +23,8 @@ class Comment
             return Topic::hasMeta('_bbp_legacy_topic_id', $legacyComment->topic_id)
                 ->get()
                 ->first();
-        });;
+        });
+        ;
 
 
         $comment = new CommentPost();

@@ -18,5 +18,4 @@ class ForumAttachment extends Post
 //    {
 //        return $this->hasMany(BpDocumentMeta::class);
 //    }
-
 }

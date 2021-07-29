@@ -38,7 +38,8 @@ class LegacyForumAttachment extends Model
      * Accessors
      * */
 
-    public function getFullHashAttribute() {
+    public function getFullHashAttribute()
+    {
         return $this->filehash . $this->extension;
     }
 
@@ -72,5 +73,4 @@ class LegacyForumAttachment extends Model
     {
         return $this->post_id !== 0;
     }
-
 }

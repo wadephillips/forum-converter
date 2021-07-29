@@ -4,18 +4,18 @@ namespace wadelphillips\ForumConverter\Commands;
 
 use Carbon\CarbonInterval;
 use Illuminate\Console\Command;
+use function time;
 use wadelphillips\ForumConverter\Converters\Category;
 use wadelphillips\ForumConverter\Converters\Comment;
 use wadelphillips\ForumConverter\Converters\Forum;
 use wadelphillips\ForumConverter\Converters\ForumAttachment;
-use wadelphillips\ForumConverter\Converters\Topic;
 //use wadelphillips\ForumConverter\Converters\Comment;
+use wadelphillips\ForumConverter\Converters\Topic;
 use wadelphillips\ForumConverter\Models\LegacyCategory;
 use wadelphillips\ForumConverter\Models\LegacyComment;
 use wadelphillips\ForumConverter\Models\LegacyForum;
 use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
 use wadelphillips\ForumConverter\Models\LegacyTopic;
-use function time;
 
 class ForumConverterCommand extends Command
 {
@@ -119,6 +119,7 @@ class ForumConverterCommand extends Command
     {
         $this->newLine(1);
         $this->info('Migrating Forum Attachments...');
+
         return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
 
         return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
@@ -143,6 +144,7 @@ class ForumConverterCommand extends Command
     private function getElapsedTimeString(int $start, int $end)
     {
         $elapsed = $end - $start;
+
         return CarbonInterval::seconds($elapsed)->cascade()->forHumans();
     }
 }
