@@ -3,8 +3,7 @@
 
 namespace wadelphillips\ForumConverter\Converters;
 
-use Corcel\Model\User;
-use function dd;
+use Illuminate\Support\Facades\Cache;
 use wadelphillips\ForumConverter\Models\Comment as CommentPost;
 use wadelphillips\ForumConverter\Models\LegacyComment;
 use wadelphillips\ForumConverter\Models\Topic;
@@ -13,18 +12,18 @@ class Comment
 {
     public static function migrate(LegacyComment $legacyComment, array $options = []): CommentPost
     {
-        if (! empty($options)) {
+        if ( !empty($options) ) {
             dd('need to handle the options!');
         }
 
 
         $comment = new CommentPost();
 
-        $parent = Topic::hasMeta('_bbp_legacy_topic_id', $legacyComment->topic_id)
-            ->get()
-            ->first();
-
-        $author = User::find($legacyComment->author_id);
+        $parent = Cache::remember('legacy.topic.' . $legacyComment->topic_id, 600, function () use ($legacyComment) {
+            return Topic::hasMeta('_bbp_legacy_topic_id', $legacyComment->topic_id)
+                ->get()
+                ->first();
+        });;
 
 
         $comment = new CommentPost();
