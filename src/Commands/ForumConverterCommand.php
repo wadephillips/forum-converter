@@ -7,8 +7,8 @@ use Illuminate\Console\Command;
 use wadelphillips\ForumConverter\Converters\Category;
 use wadelphillips\ForumConverter\Converters\Comment;
 use wadelphillips\ForumConverter\Converters\Forum;
-use wadelphillips\ForumConverter\Converters\Topic;
 use wadelphillips\ForumConverter\Converters\ForumAttachment;
+use wadelphillips\ForumConverter\Converters\Topic;
 //use wadelphillips\ForumConverter\Converters\Comment;
 use wadelphillips\ForumConverter\Models\LegacyCategory;
 use wadelphillips\ForumConverter\Models\LegacyComment;
@@ -121,6 +121,7 @@ class ForumConverterCommand extends Command
         $this->info('Migrating Forum Attachments...');
         return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
 
+        return $this->migrate(LegacyForumAttachment::class, ForumAttachment::class);
     }
 
     private function migrate($from, $converter)
