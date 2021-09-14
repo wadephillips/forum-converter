@@ -117,7 +117,7 @@ class ForumAttachment
         //create wp_post_meta
         $attachment->saveMeta([
             '_bbp_legacy_attachment_id' => $legacyAttachment->attachment_id,
-            '_bbp_legacy_topic_id' => $legacyAttachment->topic_id,
+            '_bbp_legacy_attachment_topic_id' => $legacyAttachment->topic_id,
             '_bbp_legacy_comment_id' => $legacyAttachment->post_id,
             'bp_document_upload' => '1',
             'bp_document_saved' => '0',

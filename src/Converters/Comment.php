@@ -53,8 +53,7 @@ class Comment
         $comment->pinged = '';
 
 
-//        $comment->save();
-//        $comment->guid = Option::get('home') . 'forums/discussion/' . $parent->slug . '/#post-' . $comment->ID;
+//
         $comment->save();
 
         //in post meta
