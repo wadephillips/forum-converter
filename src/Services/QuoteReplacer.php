@@ -66,22 +66,6 @@ class QuoteReplacer extends BaseReplacer
     }
 
     /**
-     * Get the inner html of the pseudo tag
-     *
-     * @param string $part
-     *
-     * @return string
-     */
-    public function getInnerHtml(string $part): string
-    {
-
-        return Str::of($part)
-            ->after($this->closingBracket)
-            ->before($this->closingTag)
-            ->trim();
-    }
-
-    /**
      * @param string $part
      * @param int    $positionClosingBracket
      *
@@ -108,6 +92,5 @@ class QuoteReplacer extends BaseReplacer
 
         return $attributes;
     }
-
 
 }

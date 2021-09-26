@@ -41,6 +41,10 @@ abstract class BaseReplacer implements Replaceable
         $this->closingTag = $closingTag;
     }
 
+    abstract public function getReplacementTag($content, $attributes): string;
+
+    abstract public function getTagAttributes(string $part, int $positionClosingBracket): array;
+
     /**
      * @return string
      */
@@ -80,11 +84,19 @@ abstract class BaseReplacer implements Replaceable
         return $this;
     }
 
-    abstract public function getReplacementTag($content, $attributes): string;
+    /**
+     * Get the inner html of the pseudo tag
+     *
+     * @param string $part
+     *
+     * @return string
+     */
+    public function getInnerHtml(string $part): string
+    {
 
-    abstract public function getInnerHtml(string $part): string;
-
-    abstract public function getTagAttributes(string $part, int $positionClosingBracket): array;
-
-
+        return Str::of($part)
+            ->after($this->closingBracket)
+            ->before($this->closingTag)
+            ->trim();
+    }
 }
