@@ -3,17 +3,13 @@
 
 namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
 
-
-use Illuminate\Support\Str;
-use wadelphillips\ForumConverter\Contracts\Replaceable;
-
 use function count;
-use function dd;
-use function dump;
+use Illuminate\Support\Str;
+
+use wadelphillips\ForumConverter\Contracts\Replaceable;
 
 abstract class BaseReplacer implements Replaceable
 {
-
     protected string $tagOpening;
 
     protected string $closingTag;
@@ -36,7 +32,6 @@ abstract class BaseReplacer implements Replaceable
         string $closingBracket,
         string $closingTag
     ) {
-
         $this->body = $body;
         $this->tagOpening = $tagOpening;
         $this->closingBracket = $closingBracket;
@@ -49,7 +44,6 @@ abstract class BaseReplacer implements Replaceable
      */
     public function getBody(): string
     {
-
         return $this->body;
     }
 
@@ -65,7 +59,6 @@ abstract class BaseReplacer implements Replaceable
 
         //iterate over substrings and replace the pseudo tags
         for ($i = 1; $i < count($parts); $i++) {
-
             if (empty($parts[ $i ])) {
                 continue;
             }
@@ -108,7 +101,6 @@ abstract class BaseReplacer implements Replaceable
      */
     protected function getInnerHtml(string $part): string
     {
-
         return Str::of($part)
             ->after($this->closingBracket)
             ->before($this->closingTag)
@@ -135,8 +127,6 @@ abstract class BaseReplacer implements Replaceable
      */
     protected function rebuildPart(string $part, string $updatedTag): string
     {
-
         return $updatedTag . Str::of($part)->after($this->closingTag)->start(' ');
     }
-
 }

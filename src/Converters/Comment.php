@@ -3,7 +3,6 @@
 
 namespace wadelphillips\ForumConverter\Converters;
 
-use Corcel\Model\Option;
 use Illuminate\Support\Facades\Cache;
 use wadelphillips\ForumConverter\Models\Comment as CommentPost;
 use wadelphillips\ForumConverter\Models\LegacyComment;
