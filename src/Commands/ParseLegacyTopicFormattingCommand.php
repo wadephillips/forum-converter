@@ -98,7 +98,7 @@ class ParseLegacyTopicFormattingCommand extends Command
             if (!$this->option('dry-run')) {
                 $topic->save();
             } else {
-                dump($topic->ID, $topic->body);
+                dump($topic->ID, $topic->post_content);
             }
             $bar->advance();
         }
