@@ -3,19 +3,11 @@
 namespace wadelphillips\ForumConverter\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Services\PseudoTagReplacer;
-
 use wadelphillips\ForumConverter\Services\TagReplacer;
 
-use function Amp\Iterator\concat;
-use function count;
-use function dd;
-use function explode;
 use function implode;
 use function is_null;
-use function strpos;
-use function substr_replace;
 
 use const PHP_EOL;
 
@@ -93,8 +85,6 @@ class ParseLegacyTopicFormattingCommand extends Command
         $bar = $this->output->createProgressBar($topics->count());
         $bar->start();
         // create a look up array of pseudo tags we need to look for and their replacements from a file
-//        $tags = is_array($this->argument('tags')) ? $this->argument('tags') ? include($this->argument('tags'));
-//        $this->setTagsToBeReplaced();
         //for each item we should search the the body for any of our pseudo tags
         foreach ($topics as $topic) {
             //when we find instances of our bad tags we need to replace them with proper html,
@@ -103,12 +93,12 @@ class ParseLegacyTopicFormattingCommand extends Command
 
             // More complicated tags will need to be manipulated [url=http://shoes.com] => <a href='http://shoes.com'>
             $body = $this->tagReplacer->reformatComplexTags($body);
-            $topic->body = $body;
+            $topic->post_content = $body;
 
             if (!$this->option('dry-run')) {
                 $topic->save();
             } else {
-                dump($topic->body);
+                dump($topic->ID, $topic->body);
             }
             $bar->advance();
         }
