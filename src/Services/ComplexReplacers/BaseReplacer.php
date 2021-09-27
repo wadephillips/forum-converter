@@ -7,8 +7,6 @@ namespace wadelphillips\ForumConverter\Services;
 use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Replaceable;
 
-use function dump;
-
 abstract class BaseReplacer implements Replaceable
 {
 
