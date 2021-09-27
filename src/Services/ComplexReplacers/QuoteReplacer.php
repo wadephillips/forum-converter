@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Services;
+namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
 
 
 use DateTime;

@@ -2,8 +2,8 @@
 
 namespace wadelphillips\ForumConverter\Contracts;
 
-use wadelphillips\ForumConverter\Services\BaseReplacer;
-use wadelphillips\ForumConverter\Services\QuoteReplacer;
+use wadelphillips\ForumConverter\Services\ComplexReplacers\BaseReplacer;
+use wadelphillips\ForumConverter\Services\ComplexReplacers\QuoteReplacer;
 
 interface Replaceable
 {
