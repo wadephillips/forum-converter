@@ -1,63 +1,64 @@
 {
-    "name": "wadephillips/forum-converter",
-    "description": "This package provides a helpful route to migrate Expression Engine 2 Forums into BBPress/ BuddyBoss forums.",
-    "keywords": [
-        "wadephillips",
-        "laravel",
-        "forum-converter"
-    ],
-    "homepage": "https://github.com/wadelphillips/forum-converter",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Wade Phillips",
-            "email": "wadelp@wadelp.com",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": "^7.4|^8.0",
-        "illuminate/contracts": "^8.37",
-        "jgrossi/corcel": "^5.0",
-        "spatie/laravel-package-tools": "^1.4.3"
-    },
-    "require-dev": {
-        "brianium/paratest": "^6.2",
-        "nunomaduro/collision": "^5.3",
-        "orchestra/testbench": "^6.15",
-        "phpunit/phpunit": "^9.3",
-        "spatie/laravel-ray": "^1.9",
-        "vimeo/psalm": "^4.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "wadelphillips\\ForumConverter\\": "src",
-            "wadelphillips\\ForumConverter\\Database\\Factories\\": "database/factories"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "wadelphillips\\ForumConverter\\Tests\\": "tests"
-        }
-    },
-    "scripts": {
-        "psalm": "vendor/bin/psalm",
-        "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "wadelphillips\\ForumConverter\\ForumConverterServiceProvider"
-            ],
-            "aliases": {
-                "ForumConverter": "wadelphillips\\ForumConverter\\ForumConverterFacade"
-            }
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "wadephillips/forum-converter",
+  "description": "This package provides a helpful route to migrate Expression Engine 2 Forums into BBPress/ BuddyBoss forums.",
+  "keywords": [
+    "wadephillips",
+    "laravel",
+    "forum-converter"
+  ],
+  "homepage": "https://github.com/wadelphillips/forum-converter",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Wade Phillips",
+      "email": "wadelp@wadelp.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.4|^8.0",
+    "illuminate/contracts": "^8.37",
+    "jgrossi/corcel": "^5.0",
+    "spatie/laravel-package-tools": "^1.4.3",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "brianium/paratest": "^6.2",
+    "nunomaduro/collision": "^5.3",
+    "orchestra/testbench": "^6.15",
+    "phpunit/phpunit": "^9.3",
+    "spatie/laravel-ray": "^1.9",
+    "vimeo/psalm": "^4.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "wadelphillips\\ForumConverter\\": "src",
+      "wadelphillips\\ForumConverter\\Database\\Factories\\": "database/factories"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "wadelphillips\\ForumConverter\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "psalm": "vendor/bin/psalm",
+    "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "wadelphillips\\ForumConverter\\ForumConverterServiceProvider"
+      ],
+      "aliases": {
+        "ForumConverter": "wadelphillips\\ForumConverter\\ForumConverterFacade"
+      }
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
