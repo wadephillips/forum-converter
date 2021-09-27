@@ -3,7 +3,6 @@
 
 namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
 
-
 use Illuminate\Support\Str;
 
 use function sprintf;
@@ -11,7 +10,6 @@ use function substr;
 
 class UrlReplacer extends BaseReplacer
 {
-
     /**
      * UrlReplacer constructor.
      *
@@ -26,7 +24,6 @@ class UrlReplacer extends BaseReplacer
         $closingBracket = ']',
         $closingTag = '[/url]'
     ) {
-
         parent::__construct($body, $tagOpening, $closingBracket, $closingTag);
     }
 
@@ -40,7 +37,6 @@ class UrlReplacer extends BaseReplacer
      */
     protected function getReplacementTag($content, $attributes): string
     {
-
         $inner = (empty($content)) ? $attributes[ 'href' ] : $content;
 //        dump($inner);
 
@@ -57,7 +53,6 @@ class UrlReplacer extends BaseReplacer
      */
     protected function getTagAttributes(string $part, int $positionClosingBracket): array
     {
-
         $attributes = [];
 
         $attributes[ 'href' ] = substr($part, 0, $positionClosingBracket);
@@ -74,7 +69,6 @@ class UrlReplacer extends BaseReplacer
      */
     protected function getInnerHtml(string $part): string
     {
-
         $inner = '';
         // check for closing tag, if exists use parent method
         if (Str::contains($part, $this->closingTag)) {
@@ -96,13 +90,10 @@ class UrlReplacer extends BaseReplacer
      */
     protected function rebuildPart(string $part, string $updatedTag): string
     {
-
-        if (!Str::contains($part, $this->closingTag)) {
+        if (! Str::contains($part, $this->closingTag)) {
             return $updatedTag . Str::of($part)->after($this->closingBracket)->start(' ');
         }
 
         return parent::rebuildPart($part, $updatedTag);
     }
-
-
 }

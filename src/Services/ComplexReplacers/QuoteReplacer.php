@@ -3,21 +3,18 @@
 
 namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
 
-
 use DateTime;
 use Illuminate\Support\Str;
 
 use function is_null;
 use function is_numeric;
 use function json_decode;
-use function sprintf;
-
 use const PHP_EOL;
 
+use function sprintf;
 
 class QuoteReplacer extends BaseReplacer
 {
-
     /**
      * QuoteReplacer constructor.
      *
@@ -45,7 +42,6 @@ class QuoteReplacer extends BaseReplacer
      */
     protected function getReplacementTag($content, $attributes): string
     {
-
         $date = (isset($attributes[ 'date' ])) ? $attributes[ 'date' ] : null;
         $date = (is_numeric($date)) ? (new DateTime)->setTimeStamp((int)$date) : $date;
 
@@ -54,9 +50,9 @@ class QuoteReplacer extends BaseReplacer
         $tag .= sprintf("<p>%s</p>%s", $content, PHP_EOL);
         $tag .= sprintf("</blockquote>%s", PHP_EOL);
 
-        if (isset($attributes[ 'author' ]) && !is_null($attributes[ 'author' ])) {
+        if (isset($attributes[ 'author' ]) && ! is_null($attributes[ 'author' ])) {
             $tag .= sprintf('<figcaption>%s', $attributes[ 'author' ]);
-            $tag .= (!is_null($date)) ? sprintf(' - %s', $date->format('M d, Y')) : '';
+            $tag .= (! is_null($date)) ? sprintf(' - %s', $date->format('M d, Y')) : '';
             $tag .= sprintf('</figcaption>%s', PHP_EOL);
         }
 
@@ -73,7 +69,6 @@ class QuoteReplacer extends BaseReplacer
      */
     protected function getTagAttributes(string $part, int $positionClosingBracket): array
     {
-
         $attributes = [];
         if ($positionClosingBracket > 0) {
             //get the attributes
@@ -92,5 +87,4 @@ class QuoteReplacer extends BaseReplacer
 
         return $attributes;
     }
-
 }

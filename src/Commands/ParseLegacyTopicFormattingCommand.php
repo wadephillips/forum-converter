@@ -3,13 +3,13 @@
 namespace wadelphillips\ForumConverter\Commands;
 
 use Illuminate\Console\Command;
-use wadelphillips\ForumConverter\Services\PseudoTagReplacer;
-use wadelphillips\ForumConverter\Services\TagReplacer;
-
 use function implode;
 use function is_null;
 
 use const PHP_EOL;
+use wadelphillips\ForumConverter\Services\PseudoTagReplacer;
+
+use wadelphillips\ForumConverter\Services\TagReplacer;
 
 class ParseLegacyTopicFormattingCommand extends Command
 {
@@ -46,7 +46,6 @@ class ParseLegacyTopicFormattingCommand extends Command
      */
     public function __construct()
     {
-
         parent::__construct();
         $this->tagReplacer = new TagReplacer();
     }
@@ -58,12 +57,10 @@ class ParseLegacyTopicFormattingCommand extends Command
      */
     public function handle()
     {
-
-        $model = implode('',["wadelphillips\ForumConverter\Models", '\\', $this->argument('model')]);
+        $model = implode('', ["wadelphillips\ForumConverter\Models", '\\', $this->argument('model')]);
         //get a set of topics/comments to parse
         if ($this->option('id') > 0) {
             $topicsQuery = $model::where('ID', $this->option('id'));
-
         } else {
             $topicsQuery = $model::query()->where('post_content', 'LIKE', '%[%]%');
         }
@@ -76,6 +73,7 @@ class ParseLegacyTopicFormattingCommand extends Command
 
         if ($topics->count() == 0) {
             $this->alert('There are no topics to update!');
+
             return 0;
         }
         $this->info('Lets parse some strings!');
@@ -95,7 +93,7 @@ class ParseLegacyTopicFormattingCommand extends Command
             $body = $this->tagReplacer->reformatComplexTags($body);
             $topic->post_content = $body;
 
-            if (!$this->option('dry-run')) {
+            if (! $this->option('dry-run')) {
                 $topic->save();
             } else {
                 dump($topic->ID, $topic->post_content);
@@ -105,7 +103,7 @@ class ParseLegacyTopicFormattingCommand extends Command
         $bar->finish();
         $this->line(PHP_EOL);
         $this->info('Your strings have been updated!');
+
         return 0;
     }
-
 }

@@ -18,5 +18,4 @@ class PseudoTagReplacerServiceProvider extends ServiceProvider
             return new PseudoTagReplacer();
         });
     }
-
 }

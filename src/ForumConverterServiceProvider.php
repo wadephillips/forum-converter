@@ -7,10 +7,8 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 use wadelphillips\ForumConverter\Commands\ForumConverterCommand;
 use wadelphillips\ForumConverter\Commands\ParseLegacyTopicFormattingCommand;
 
-use wadelphillips\ForumConverter\Services\PseudoTagReplacer;
 class ForumConverterServiceProvider extends PackageServiceProvider
 {
-
     public function configurePackage(Package $package): void
     {
         /*
