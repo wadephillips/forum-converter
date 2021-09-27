@@ -7,6 +7,10 @@ namespace wadelphillips\ForumConverter\Services;
 use Closure;
 use Illuminate\Support\Str;
 
+use wadelphillips\ForumConverter\Services\ComplexReplacers\QuoteReplacer;
+
+use wadelphillips\ForumConverter\Services\ComplexReplacers\UrlReplacer;
+
 use function count;
 use function explode;
 use function implode;
@@ -23,7 +27,7 @@ class TagReplacer
      *
      * @param array $tagsToBeReplaced
      */
-    public function __construct(array $tagsToBeReplaced = null)
+    public function  __construct(array $tagsToBeReplaced = null)
     {
 
         $this->tagsToBeReplaced = $tagsToBeReplaced?? $this->setTagsToBeReplaced();
@@ -118,13 +122,13 @@ class TagReplacer
                 'h5' => '<h5>',
                 'h6' => '<h6>',
                 '/strong' => '</strong>',
+                '/b' => '</b>',
                 '/em' => '</em>',
                 '/i' => '</i>',
                 '/u' => '</u>',
                 '/size' => '</span>',
                 '/email' => '</a>',
                 '/color' => '</b>',
-                '/url' => '</a>',
                 '/h1' => '</h1>',
                 '/h2' => '</h2>',
                 '/h3' => '</h3>',
@@ -149,21 +153,15 @@ class TagReplacer
                     'openingReplacement' => '<span style="color:',
                     'closingReplacement' => ';">',
                 ],
-                'url' => [ //this doesn't work in all instances, because the content may be empty on some of these eg [url=http://example] .  There is no content and no losing tag.  In this case the tag should be renderd as a <a href="http://example.com">http://example.com</a>
-                    'tagStart' => 'url=',
-                    'openingReplacement' => '<a href="',
-                    'closingReplacement' => '">',
-                ],
+                'url' => function ($body){
+                    $urlReplacer = new UrlReplacer($body);
+                    return $urlReplacer->process()->getBody();
+                },
                 'quote' => function ($body) {
                     $quoteReplacer = new QuoteReplacer($body);
-                    return $this->process()->getBody();
+                    return $quoteReplacer->process()->getBody();
                 }
-//                    [
-//                    'tagStart' => 'quote=',
-//                    'openingReplacement' => '<a href="',
-//                    'closingReplacement' => '">',
-//                        'callback' =>
-//                    ],
+
                 ,
             ],
         ];

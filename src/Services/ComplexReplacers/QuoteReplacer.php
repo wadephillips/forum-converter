@@ -43,7 +43,7 @@ class QuoteReplacer extends BaseReplacer
      *
      * @return string
      */
-    public function getReplacementTag($content, $attributes): string
+    protected function getReplacementTag($content, $attributes): string
     {
 
         $date = (isset($attributes[ 'date' ])) ? $attributes[ 'date' ] : null;
@@ -71,7 +71,7 @@ class QuoteReplacer extends BaseReplacer
      *
      * @return array|mixed
      */
-    public function getTagAttributes(string $part, int $positionClosingBracket): array
+    protected function getTagAttributes(string $part, int $positionClosingBracket): array
     {
 
         $attributes = [];
@@ -87,7 +87,7 @@ class QuoteReplacer extends BaseReplacer
                 ->start('{')
                 ->finish('}');
 
-            $attributes = json_decode($json, true);
+            $attributes = json_decode((string) $json, true);
         }
 
         return $attributes;

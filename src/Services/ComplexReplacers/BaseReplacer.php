@@ -7,6 +7,10 @@ namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
 use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Replaceable;
 
+use function count;
+use function dd;
+use function dump;
+
 abstract class BaseReplacer implements Replaceable
 {
 
@@ -39,11 +43,8 @@ abstract class BaseReplacer implements Replaceable
         $this->closingTag = $closingTag;
     }
 
-    abstract public function getReplacementTag($content, $attributes): string;
-
-    abstract public function getTagAttributes(string $part, int $positionClosingBracket): array;
-
     /**
+     * Accessor for thee body after processing
      * @return string
      */
     public function getBody(): string
@@ -52,6 +53,10 @@ abstract class BaseReplacer implements Replaceable
         return $this->body;
     }
 
+    /**
+     * Primary method for this class that performs the replacement of the pseduo tags
+     * @return $this
+     */
     public function process(): BaseReplacer
     {
 
@@ -59,21 +64,22 @@ abstract class BaseReplacer implements Replaceable
         $parts = explode($this->tagOpening, $this->body);
 
         //iterate over substrings and replace the pseudo tags
-        foreach ($parts as &$part) {
+        for ($i = 1; $i < count($parts); $i++) {
 
-            if (empty($part)) {
+            if (empty($parts[ $i ])) {
                 continue;
             }
-            $positionClosingBracket = strpos($part, $this->closingBracket);
 
-            $attributes = $this->getTagAttributes($part, $positionClosingBracket);
+            $positionClosingBracket = strpos($parts[ $i ], $this->closingBracket);
 
-            $tagBody = $this->getInnerHtml($part);
+            $attributes = $this->getTagAttributes($parts[ $i ], $positionClosingBracket);
+
+            $tagBody = $this->getInnerHtml($parts[ $i ]);
 
             $updatedTag = $this->getReplacementTag($tagBody, $attributes);
 
             // combine replacement tag and remaining portion of part
-            $part = $updatedTag . Str::of($part)->after($this->closingTag)->start(' ');
+            $parts[ $i ] = $this->rebuildPart($parts[ $i ], $updatedTag);
         }
 
         //rebuild and set the body
@@ -83,13 +89,24 @@ abstract class BaseReplacer implements Replaceable
     }
 
     /**
+     * Abstract method for getting the attributes that exist within the tag and
+     * returning them as an array
+     *
+     * @param string $part
+     * @param int    $positionClosingBracket
+     *
+     * @return array
+     */
+    abstract protected function getTagAttributes(string $part, int $positionClosingBracket): array;
+
+    /**
      * Get the inner html of the pseudo tag
      *
      * @param string $part
      *
      * @return string
      */
-    public function getInnerHtml(string $part): string
+    protected function getInnerHtml(string $part): string
     {
 
         return Str::of($part)
@@ -97,4 +114,29 @@ abstract class BaseReplacer implements Replaceable
             ->before($this->closingTag)
             ->trim();
     }
+
+    /**
+     * Abstract method for generating the correct html tag
+     *
+     * @param $content
+     * @param $attributes
+     *
+     * @return string
+     */
+    abstract protected function getReplacementTag($content, $attributes): string;
+
+    /**
+     * Recombine the corrected tag with the trailing content
+     *
+     * @param string $part
+     * @param string $updatedTag
+     *
+     * @return string
+     */
+    protected function rebuildPart(string $part, string $updatedTag): string
+    {
+
+        return $updatedTag . Str::of($part)->after($this->closingTag)->start(' ');
+    }
+
 }
