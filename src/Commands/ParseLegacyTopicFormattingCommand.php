@@ -3,9 +3,12 @@
 namespace wadelphillips\ForumConverter\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use function implode;
+use function info;
 use function is_null;
 
+use function sprintf;
 use const PHP_EOL;
 use wadelphillips\ForumConverter\Services\PseudoTagReplacer;
 
@@ -15,7 +18,8 @@ class ParseLegacyTopicFormattingCommand extends Command
 {
 
     /**
-     * The name and signature of the console command.
+     * This command searches through WP Posts and replaces the pseudo html markup from
+     * ExpressionEngine 2 forums
      *
      * @var string
      */
@@ -57,34 +61,47 @@ class ParseLegacyTopicFormattingCommand extends Command
      */
     public function handle()
     {
-        $model = implode('', ["wadelphillips\ForumConverter\Models", '\\', $this->argument('model')]);
-        //get a set of topics/comments to parse
+        //set the fully qualified name of the model to be searched.
+        //  todo create a namespace option so that this could be extended and changed at runtime
+        $argumentModel = $this->argument('model');
+        $model = implode('',
+                         [
+                             "wadelphillips\ForumConverter\Models",
+                             '\\',
+                             $argumentModel,
+                         ]
+        );
+
+        //get a set of entries to parse
         if ($this->option('id') > 0) {
-            $topicsQuery = $model::where('ID', $this->option('id'));
+            $modelQuery = $model::where('ID', $this->option('id'));
         } else {
-            $topicsQuery = $model::query()->where('post_content', 'LIKE', '%[%]%');
+            $modelQuery = $model::query()->where('post_content', 'LIKE', '%[%]%');
         }
 
         if (! is_null($this->options('limit'))) {
-            $topicsQuery->limit($this->option('limit'));
+            $modelQuery->limit($this->option('limit'));
         }
 
-        $topics = $topicsQuery->get();
+        $models = $modelQuery->get();
 
-        if ($topics->count() == 0) {
-            $this->alert('There are no topics to update!');
+        if ($models->count() == 0) {
+            $this->alert(sprintf('There are no %s to update!', Str::plural($argumentModel)));
 
             return 0;
         }
-        $this->info('Lets parse some strings!');
+
+        $this->info(sprintf('Lets parse some %s!', Str::plural($argumentModel)));
 
 
         $this->info('Replacing tags');
-        $bar = $this->output->createProgressBar($topics->count());
+
+        // Start progress bar
+        $bar = $this->output->createProgressBar($models->count());
         $bar->start();
-        // create a look up array of pseudo tags we need to look for and their replacements from a file
-        //for each item we should search the the body for any of our pseudo tags
-        foreach ($topics as $topic) {
+
+        // Scan each format
+        foreach ($models as $topic) {
             //when we find instances of our bad tags we need to replace them with proper html,
             // basic tags like [b] can be replaced directly with html like <b>.  But
             $body = $this->tagReplacer->reformatSimpleTags($topic->post_content);
@@ -96,12 +113,19 @@ class ParseLegacyTopicFormattingCommand extends Command
             if (! $this->option('dry-run')) {
                 $topic->save();
             } else {
-                dump($topic->ID, $topic->post_content);
+                $this->info($topic->ID);
+                $this->newLine();
+                $this->info($topic->post_content);
+                $this->newLine();
+                $this->line('---------------------');
+                $this->newLine();
             }
             $bar->advance();
         }
+        // close out progress bar and finish up command
         $bar->finish();
-        $this->line(PHP_EOL);
+        $this->newLine();
+        unset($models);
         $this->info('Your strings have been updated!');
 
         return 0;

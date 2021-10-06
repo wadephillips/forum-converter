@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
 
 /**
+ * LegacyTopic Model represents a Forum Topic in a ExpressionEngine2 installation.
+ *
  * @property mixed title
  * @property mixed topic_date
  * @property mixed topic_date_local

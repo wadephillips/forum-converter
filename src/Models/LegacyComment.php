@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
 
 /**
+ * LegacyComment Model represents a Forum Comment in a ExpressionEngine2 installation.
+ *
  * @property mixed topic_id
  * @property mixed author_id
  * @property mixed ip_address

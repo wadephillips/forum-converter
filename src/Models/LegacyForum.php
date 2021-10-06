@@ -11,6 +11,10 @@ use function trim;
 use function unserialize;
 use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumScope;
 
+/**
+ * LegacyForum Model represents a Forum in a ExpressionEngine2 installation.
+ * @package wadelphillips\ForumConverter\Models
+ */
 class LegacyForum extends Model
 {
     /**

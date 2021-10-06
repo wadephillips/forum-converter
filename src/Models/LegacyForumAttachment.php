@@ -9,8 +9,11 @@ use Illuminate\Support\Str;
 use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
 
 /**
- * @property  extension
- * @property  filename
+ * LegacyForumAttachment Model represents a Forum Attachment in a ExpressionEngine2 installation.
+ *
+ * @property mixed extension
+ * @property mixed filehash
+ * @property mixed attachment_date
  */
 class LegacyForumAttachment extends Model
 {

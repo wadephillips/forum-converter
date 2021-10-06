@@ -23,13 +23,23 @@ class TagReplacer
     /**
      * TagReplacer constructor.
      *
-     * @param array $tagsToBeReplaced
+     * @param array|null $tagsToBeReplaced
      */
     public function __construct(array $tagsToBeReplaced = null)
     {
         $this->tagsToBeReplaced = $tagsToBeReplaced ?? $this->setTagsToBeReplaced();
     }
 
+    /**
+     * Searches and replaces pseudo tags as defined in the 'simple' subarray
+     * of the tagsToBeReplaced array.
+     * This works well for pseudo tags that can be directly replace with HTML E.G.
+     * [strong]...[/strong] should be replaced with <strong>...</strong>
+     *
+     * @param string $topic
+     *
+     * @return string
+     */
     public function reformatSimpleTags(string $topic): string
     {
         foreach ($this->tagsToBeReplaced[ 'simple' ] as $existing => $replacement) {
@@ -40,6 +50,12 @@ class TagReplacer
         return $topic;
     }
 
+    /**
+     *
+     * @param string $topic
+     *
+     * @return string
+     */
     public function reformatComplexTags(string $topic): string
     {
         foreach ($this->tagsToBeReplaced[ 'complex' ] as $existing) {
@@ -52,7 +68,17 @@ class TagReplacer
         return $topic;
     }
 
-    private function doComplexTagReplacement($topic, $map): string
+    /**
+     * Searches and replaces using a more complex manipulation or applies a closure to a more complicated Pseudo Tag.
+     * This is good for pseudo tags that need some kind of programmatic manipulation, E.G.
+     * [url=http://example/] should be replaced with <a href="http://example">http://example</a>
+     *
+     * @param string $topic the haystack
+     * @param array | Closure $map
+     *
+     * @return string
+     */
+    private function doComplexTagReplacement(string $topic, $map): string
     {
         if ($map instanceof Closure) {
             $topic = $map($topic);
@@ -69,6 +95,16 @@ class TagReplacer
         return $topic;
     }
 
+    /**
+     * Provides a base method of replacing complex tags that require less manipulation
+     * @param string $body
+     * @param string $opening
+     * @param string $closing
+     * @param string $openingReplacement
+     * @param string $closingReplacement
+     *
+     * @return string
+     */
     private function doBaseComplexTagReplacement(
         string $body,
         string $opening,
@@ -95,6 +131,9 @@ class TagReplacer
         return implode("$openingReplacement", $parts);
     }
 
+    /**
+     * @return array
+     */
     public function setTagsToBeReplaced()
     {
         return $this->tagsToBeReplaced = [
@@ -146,14 +185,12 @@ class TagReplacer
                     'closingReplacement' => ';">',
                 ],
                 'url' => function ($body) {
-                    $urlReplacer = new UrlReplacer($body);
 
-                    return $urlReplacer->process()->getBody();
+                    return (new UrlReplacer($body))->process()->getBody();
                 },
                 'quote' => function ($body) {
-                    $quoteReplacer = new QuoteReplacer($body);
 
-                    return $quoteReplacer->process()->getBody();
+                    return (new QuoteReplacer($body))->process()->getBody();
                 }
 
                 ,

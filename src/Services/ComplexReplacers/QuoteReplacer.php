@@ -6,6 +6,7 @@ namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
 use DateTime;
 use Illuminate\Support\Str;
 
+use wadelphillips\ForumConverter\Contracts\Replaceable;
 use function is_null;
 use function is_numeric;
 use function json_decode;
@@ -13,7 +14,7 @@ use const PHP_EOL;
 
 use function sprintf;
 
-class QuoteReplacer extends BaseReplacer
+class QuoteReplacer extends BaseReplacer implements Replaceable
 {
     /**
      * QuoteReplacer constructor.

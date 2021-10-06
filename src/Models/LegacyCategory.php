@@ -14,6 +14,7 @@ use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumCategoryScope;
 use wadelphillips\ForumConverter\Database\Factories\LegacyCategoryFactory;
 
 /**
+ * LegacyCategory Model represents a Forum Category in a ExpressionEngine2 installation.
  * @property mixed slug
  */
 class LegacyCategory extends Model
