@@ -1,29 +1,25 @@
-# This package provides a helpful route to migrate Expression Engine 2 Forums into BBPress/ BuddyBoss forums.
+# Migrate Expression Engine 2 Forums into BBPress/ BuddyBoss forums.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/wadelphillips/forum-converter.svg?style=flat-square)](https://packagist.org/packages/wadelphillips/forum-converter)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/wadelphillips/forum-converter/run-tests?label=tests)](https://github.com/wadelphillips/forum-converter/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/wadelphillips/forum-converter/Check%20&%20fix%20styling?label=code%20style)](https://github.com/wadelphillips/forum-converter/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/wadelphillips/forum-converter.svg?style=flat-square)](https://packagist.org/packages/wadelphillips/forum-converter)
 
 ---
-This repo can be used as to scaffold a Laravel package. Follow these steps to get started:
+This package can be used to migrate Expression Engine 2x forums to BBpress/ BuddyBoss Forums on WordPress. 
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this forum-converter
-2. Run "./configure-forum-converter.sh" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
-5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
+It provides two artisan commands:
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+```
+ee-forum:migrate
+```
 
-## Support us
+and
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/forum-converter.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/forum-converter)
+```
+ee-forum:parse-format
+```
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+The `ee-forum:migrate` command migrates forum categories, threads, comments, and attachments from an Expression Engine forum instance to a BBPress/BuddyBoss instance.
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+The `ee-forum:parse-format` command replaces ExpressionEngine specific formatting with html tags.
+
 
 ## Installation
 
@@ -36,7 +32,7 @@ composer require wadelphillips/forum-converter
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="wadelphillips\ForumConverter\ForumConverterServiceProvider" --tag="forum-converter-migrations"
+php artisan vendor:publish --provider="wadephillips\ForumConverter\ForumConverterServiceProvider" --tag="forum-converter-migrations"
 php artisan migrate
 ```
 
