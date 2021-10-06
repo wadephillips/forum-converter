@@ -36,11 +36,6 @@ class ParseLegacyTopicFormattingCommand extends Command
      */
     protected $description = 'Clean up legacy formatting from EE Forums in new wp forums';
 
-    /**
-     * @var PseudoTagReplacer
-     */
-    private PseudoTagReplacer $replacer;
-
     private TagReplacer $tagReplacer;
 
     /**
