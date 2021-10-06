@@ -185,11 +185,9 @@ class TagReplacer
                     'closingReplacement' => ';">',
                 ],
                 'url' => function ($body) {
-
                     return (new UrlReplacer($body))->process()->getBody();
                 },
                 'quote' => function ($body) {
-
                     return (new QuoteReplacer($body))->process()->getBody();
                 }
 

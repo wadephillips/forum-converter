@@ -12,5 +12,4 @@ use Corcel\Model\Post;
 class ForumAttachment extends Post
 {
     protected $postType = 'attachment';
-
 }

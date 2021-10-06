@@ -5,12 +5,9 @@ namespace wadelphillips\ForumConverter\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use function implode;
-use function info;
 use function is_null;
 
 use function sprintf;
-use const PHP_EOL;
-use wadelphillips\ForumConverter\Services\PseudoTagReplacer;
 
 use wadelphillips\ForumConverter\Services\TagReplacer;
 
@@ -59,8 +56,9 @@ class ParseLegacyTopicFormattingCommand extends Command
         //set the fully qualified name of the model to be searched.
         //  todo create a namespace option so that this could be extended and changed at runtime
         $argumentModel = $this->argument('model');
-        $model = implode('',
-                         [
+        $model = implode(
+            '',
+            [
                              "wadelphillips\ForumConverter\Models",
                              '\\',
                              $argumentModel,
