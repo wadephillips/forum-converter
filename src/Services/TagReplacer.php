@@ -4,19 +4,18 @@
 namespace wadephillips\ForumConverter\Services;
 
 use Closure;
-use Illuminate\Support\Str;
-use wadephillips\ForumConverter\Services\ComplexReplacers\QuoteReplacer;
-use wadephillips\ForumConverter\Services\ComplexReplacers\UrlReplacer;
-
 use function count;
 use function explode;
+use Illuminate\Support\Str;
+
 use function implode;
 use function strpos;
 use function substr_replace;
+use wadephillips\ForumConverter\Services\ComplexReplacers\QuoteReplacer;
+use wadephillips\ForumConverter\Services\ComplexReplacers\UrlReplacer;
 
 class TagReplacer
 {
-
     private array $tagsToBeReplaced;
 
     /**
@@ -26,7 +25,6 @@ class TagReplacer
      */
     public function __construct(array $tagsToBeReplaced = null)
     {
-
         $this->tagsToBeReplaced = $tagsToBeReplaced ?? $this->setTagsToBeReplaced();
     }
 
@@ -36,8 +34,7 @@ class TagReplacer
      */
     public function setTagsToBeReplaced(array $tags = []): array
     {
-
-        $this->tagsToBeReplaced = (!empty($tags))
+        $this->tagsToBeReplaced = (! empty($tags))
             ? $tags
             : [
                 'opening' => '[',
@@ -88,11 +85,9 @@ class TagReplacer
                         'closingReplacement' => ';">',
                     ],
                     'url' => function ($body) {
-
                         return (new UrlReplacer($body))->process()->getBody();
                     },
                     'quote' => function ($body) {
-
                         return (new QuoteReplacer($body))->process()->getBody();
                     }
 
@@ -113,7 +108,6 @@ class TagReplacer
      */
     public function reformatSimpleTags(string $topic): string
     {
-
         foreach ($this->tagsToBeReplaced[ 'simple' ] as $existing => $replacement) {
             $tag = $this->tagsToBeReplaced[ 'opening' ] . $existing . $this->tagsToBeReplaced[ 'closing' ];
             $topic = Str::replace($tag, $replacement, $topic);
@@ -130,7 +124,6 @@ class TagReplacer
      */
     public function reformatComplexTags(string $topic): string
     {
-
         foreach ($this->tagsToBeReplaced[ 'complex' ] as $existing) {
             $topic = $this->doComplexTagReplacement(
                 $topic,
@@ -153,7 +146,6 @@ class TagReplacer
      */
     private function doComplexTagReplacement(string $topic, $map): string
     {
-
         if ($map instanceof Closure) {
             $topic = $map($topic);
         } else {
@@ -189,7 +181,7 @@ class TagReplacer
     ): string {
 
         // need a guard to ensure that the tag exists in the body
-        if (!Str::contains($body, $opening)) {
+        if (! Str::contains($body, $opening)) {
             return $body;
         }
 
@@ -205,5 +197,4 @@ class TagReplacer
         //replace opening tag and recombine
         return implode("$openingReplacement", $parts);
     }
-
 }
