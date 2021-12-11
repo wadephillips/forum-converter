@@ -1,12 +1,12 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Models;
+namespace wadephillips\ForumConverter\Models;
 
 use Carbon\Carbon;
 use Corcel\Model\User;
 use Illuminate\Database\Eloquent\Model;
-use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
+use wadephillips\ForumConverter\Contracts\Scopes\BoardScope;
 
 /**
  * LegacyComment Model represents a Forum Comment in a ExpressionEngine2 installation.

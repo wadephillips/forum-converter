@@ -1,12 +1,12 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Converters;
+namespace wadephillips\ForumConverter\Converters;
 
 use Illuminate\Support\Facades\Cache;
-use wadelphillips\ForumConverter\Models\Comment as CommentPost;
-use wadelphillips\ForumConverter\Models\LegacyComment;
-use wadelphillips\ForumConverter\Models\Topic;
+use wadephillips\ForumConverter\Models\Comment as CommentPost;
+use wadephillips\ForumConverter\Models\LegacyComment;
+use wadephillips\ForumConverter\Models\Topic;
 
 class Comment
 {

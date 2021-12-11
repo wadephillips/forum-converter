@@ -1,6 +1,6 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Tests;
+namespace wadephillips\ForumConverter\Tests;
 
 class ExampleTest extends TestCase
 {

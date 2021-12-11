@@ -1,21 +1,20 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Commands;
+namespace wadephillips\ForumConverter\Commands;
 
 use Carbon\CarbonInterval;
 use Illuminate\Console\Command;
 use function time;
-use wadelphillips\ForumConverter\Converters\Category;
-use wadelphillips\ForumConverter\Converters\Comment;
-use wadelphillips\ForumConverter\Converters\Forum;
-use wadelphillips\ForumConverter\Converters\ForumAttachment;
-//use wadelphillips\ForumConverter\Converters\Comment;
-use wadelphillips\ForumConverter\Converters\Topic;
-use wadelphillips\ForumConverter\Models\LegacyCategory;
-use wadelphillips\ForumConverter\Models\LegacyComment;
-use wadelphillips\ForumConverter\Models\LegacyForum;
-use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
-use wadelphillips\ForumConverter\Models\LegacyTopic;
+use wadephillips\ForumConverter\Converters\Category;
+use wadephillips\ForumConverter\Converters\Comment;
+use wadephillips\ForumConverter\Converters\Forum;
+use wadephillips\ForumConverter\Converters\ForumAttachment;
+use wadephillips\ForumConverter\Converters\Topic;
+use wadephillips\ForumConverter\Models\LegacyCategory;
+use wadephillips\ForumConverter\Models\LegacyComment;
+use wadephillips\ForumConverter\Models\LegacyForum;
+use wadephillips\ForumConverter\Models\LegacyForumAttachment;
+use wadephillips\ForumConverter\Models\LegacyTopic;
 
 class ForumConverterCommand extends Command
 {

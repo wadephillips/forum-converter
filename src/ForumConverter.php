@@ -1,6 +1,6 @@
 <?php
 
-namespace wadelphillips\ForumConverter;
+namespace wadephillips\ForumConverter;
 
 class ForumConverter
 {

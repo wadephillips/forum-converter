@@ -1,13 +1,13 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Models;
+namespace wadephillips\ForumConverter\Models;
 
 use Corcel\Model\Post;
 
 /**
  * Category Model represents a Forum Category in a Buddy Press installation.
- * @package wadelphillips\ForumConverter\Models
+ * @package wadephillips\ForumConverter\Models
  */
 class Category extends Post
 {

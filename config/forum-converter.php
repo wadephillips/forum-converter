@@ -1,6 +1,12 @@
 <?php
-// config for wadelphillips/
+// config for wadephillips/
 return [
+    /*
+     * The connection to your legacy ExpressionEngine2 forum.  Define the connection
+     * settings for this database here.
+     * You will need another database connection for your wordpress site, this connection
+     * can be configured in the corcel.php config file.
+     */
     'database' => [
         'connections' => [
             'legacy' => [
@@ -26,9 +32,17 @@ return [
     ],
     'forum' => [
         'legacy' => [
+            /* If your EE forums have hidden or private forums that are only visible
+             *  to specific user groups enter the user group ids of the non super admin groups here.
+             * Categories and Forums only visible to a subset of these groups will be
+             * hidden when they are transfered for review by a wordpress admin
+             */
             'privateGroups' => ['6','9','11','14'],
         ],
     ],
+    /*
+     * Sets up the file systems for saving file attachments
+     */
     'filesystems' => [
         'disks' => [
             'legacy_forum_attachment' => [

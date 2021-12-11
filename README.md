@@ -2,7 +2,7 @@
 
 
 ---
-This package can be used to migrate Expression Engine 2x forums to BBpress/ BuddyBoss Forums on WordPress. 
+This package can be used to migrate Expression Engine 2x forums to BBpress/ BuddyBoss Forums on WordPress.
 
 It provides two artisan commands:
 
@@ -21,24 +21,19 @@ The `ee-forum:migrate` command migrates forum categories, threads, comments, and
 The `ee-forum:parse-format` command replaces ExpressionEngine specific formatting with html tags.
 
 
+
+
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require wadelphillips/forum-converter
+composer require wadephillips/forum-converter
 ```
 
-You can publish and run the migrations with:
-
+You can publish the config files with:
 ```bash
-php artisan vendor:publish --provider="wadephillips\ForumConverter\ForumConverterServiceProvider" --tag="forum-converter-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="wadelphillips\ForumConverter\ForumConverterServiceProvider" --tag="forum-converter-config"
+php artisan vendor:publish --provider="wadephillips\ForumConverter\ForumConverterServiceProvider" --tag="forum-converter-config"
 ```
 
 This is the contents of the published config file:
@@ -49,34 +44,30 @@ return [
 ```
 
 ## Usage
-
-```php
-$forum-converter = new wadelphillips\ForumConverter();
-echo $forum-converter->echoPhrase('Hello, Spatie!');
-```
-
-## Testing
-
+In your terminal enter either of these two artisan commands
 ```bash
-composer test
+php artisan ee-forum:migrate
+#
+php artisan ee-forum:parse-format
 ```
 
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+## ENV
+You'll need to define the following variables in your .env file
+```bash
+LEGACY_DB_HOST
+LEGACY_DB_PORT
+LEGACY_DB_DATABASE
+LEGACY_DB_USERNAME
+LEGACY_DB_PASSWORD
+LEGACY_DB_SOCKET
+# Use absolute paths for these attachment paths
+LEGACY_FORUM_ATTACHMENTS_PATH
+WP_FORUM_ATTACHMENTS_PATH
+```
 
 ## Credits
 
-- [Wade Phillips](https://github.com/wadelphillips)
-- [All Contributors](../../contributors)
+- [Wade Phillips](https://github.com/wadephillips)
 
 ## License
 

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Converters;
+namespace wadephillips\ForumConverter\Converters;
 
 use Corcel\Model\Option;
 use function dd;
-use wadelphillips\ForumConverter\Models\Category as Category;
-use wadelphillips\ForumConverter\Models\Forum as ForumPost;
-use wadelphillips\ForumConverter\Models\LegacyForum;
+use wadephillips\ForumConverter\Models\Category as Category;
+use wadephillips\ForumConverter\Models\Forum as ForumPost;
+use wadephillips\ForumConverter\Models\LegacyForum;
 
 class Forum
 {

@@ -1,23 +1,22 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Services;
+namespace wadephillips\ForumConverter\Services;
 
 use Closure;
-use function count;
-
-use function explode;
-
 use Illuminate\Support\Str;
+use wadephillips\ForumConverter\Services\ComplexReplacers\QuoteReplacer;
+use wadephillips\ForumConverter\Services\ComplexReplacers\UrlReplacer;
 
+use function count;
+use function explode;
 use function implode;
 use function strpos;
 use function substr_replace;
-use wadelphillips\ForumConverter\Services\ComplexReplacers\QuoteReplacer;
-use wadelphillips\ForumConverter\Services\ComplexReplacers\UrlReplacer;
 
 class TagReplacer
 {
+
     private array $tagsToBeReplaced;
 
     /**
@@ -27,7 +26,79 @@ class TagReplacer
      */
     public function __construct(array $tagsToBeReplaced = null)
     {
+
         $this->tagsToBeReplaced = $tagsToBeReplaced ?? $this->setTagsToBeReplaced();
+    }
+
+    /**
+     * This
+     * @return array
+     */
+    public function setTagsToBeReplaced(array $tags = []): array
+    {
+
+        $this->tagsToBeReplaced = (!empty($tags))
+            ? $tags
+            : [
+                'opening' => '[',
+                'closing' => ']',
+                'simple' => [
+                    'b' => '<b>',
+                    'strong' => '<strong>',
+                    'em' => '<em>',
+                    'i' => '<i>',
+                    'u' => '<u>',
+                    'b' => '<b>',
+                    'h1' => '<h1>',
+                    'h2' => '<h2>',
+                    'h3' => '<h3>',
+                    'h4' => '<h4>',
+                    'h5' => '<h5>',
+                    'h6' => '<h6>',
+                    '/strong' => '</strong>',
+                    '/b' => '</b>',
+                    '/em' => '</em>',
+                    '/i' => '</i>',
+                    '/u' => '</u>',
+                    '/size' => '</span>',
+                    '/email' => '</a>',
+                    '/color' => '</b>',
+                    '/h1' => '</h1>',
+                    '/h2' => '</h2>',
+                    '/h3' => '</h3>',
+                    '/h4' => '</h4>',
+                    '/h5' => '</h5>',
+                    '/h6' => '</h6>',
+                ],
+                'complex' => [
+
+                    'size' => [
+                        'tagStart' => 'size=',
+                        'openingReplacement' => '<b data-size="',
+                        'closingReplacement' => '">',
+                    ],
+                    'email' => [
+                        'tagStart' => 'email=',
+                        'openingReplacement' => '<a href="mailto:',
+                        'closingReplacement' => '">',
+                    ],
+                    'color' => [
+                        'tagStart' => 'color=',
+                        'openingReplacement' => '<span style="color:',
+                        'closingReplacement' => ';">',
+                    ],
+                    'url' => function ($body) {
+
+                        return (new UrlReplacer($body))->process()->getBody();
+                    },
+                    'quote' => function ($body) {
+
+                        return (new QuoteReplacer($body))->process()->getBody();
+                    }
+
+                    ,
+                ],
+            ];
     }
 
     /**
@@ -42,6 +113,7 @@ class TagReplacer
      */
     public function reformatSimpleTags(string $topic): string
     {
+
         foreach ($this->tagsToBeReplaced[ 'simple' ] as $existing => $replacement) {
             $tag = $this->tagsToBeReplaced[ 'opening' ] . $existing . $this->tagsToBeReplaced[ 'closing' ];
             $topic = Str::replace($tag, $replacement, $topic);
@@ -58,6 +130,7 @@ class TagReplacer
      */
     public function reformatComplexTags(string $topic): string
     {
+
         foreach ($this->tagsToBeReplaced[ 'complex' ] as $existing) {
             $topic = $this->doComplexTagReplacement(
                 $topic,
@@ -73,13 +146,14 @@ class TagReplacer
      * This is good for pseudo tags that need some kind of programmatic manipulation, E.G.
      * [url=http://example/] should be replaced with <a href="http://example">http://example</a>
      *
-     * @param string $topic the haystack
+     * @param string          $topic the haystack
      * @param array | Closure $map
      *
      * @return string
      */
     private function doComplexTagReplacement(string $topic, $map): string
     {
+
         if ($map instanceof Closure) {
             $topic = $map($topic);
         } else {
@@ -97,6 +171,7 @@ class TagReplacer
 
     /**
      * Provides a base method of replacing complex tags that require less manipulation
+     *
      * @param string $body
      * @param string $opening
      * @param string $closing
@@ -114,7 +189,7 @@ class TagReplacer
     ): string {
 
         // need a guard to ensure that the tag exists in the body
-        if (! Str::contains($body, $opening)) {
+        if (!Str::contains($body, $opening)) {
             return $body;
         }
 
@@ -131,68 +206,4 @@ class TagReplacer
         return implode("$openingReplacement", $parts);
     }
 
-    /**
-     * @return array
-     */
-    public function setTagsToBeReplaced()
-    {
-        return $this->tagsToBeReplaced = [
-            'opening' => '[',
-            'closing' => ']',
-            'simple' => [
-                'b' => '<b>',
-                'strong' => '<strong>',
-                'em' => '<em>',
-                'i' => '<i>',
-                'u' => '<u>',
-                'b' => '<b>',
-                'h1' => '<h1>',
-                'h2' => '<h2>',
-                'h3' => '<h3>',
-                'h4' => '<h4>',
-                'h5' => '<h5>',
-                'h6' => '<h6>',
-                '/strong' => '</strong>',
-                '/b' => '</b>',
-                '/em' => '</em>',
-                '/i' => '</i>',
-                '/u' => '</u>',
-                '/size' => '</span>',
-                '/email' => '</a>',
-                '/color' => '</b>',
-                '/h1' => '</h1>',
-                '/h2' => '</h2>',
-                '/h3' => '</h3>',
-                '/h4' => '</h4>',
-                '/h5' => '</h5>',
-                '/h6' => '</h6>',
-            ],
-            'complex' => [
-
-                'size' => [
-                    'tagStart' => 'size=',
-                    'openingReplacement' => '<b data-size="',
-                    'closingReplacement' => '">',
-                ],
-                'email' => [
-                    'tagStart' => 'email=',
-                    'openingReplacement' => '<a href="mailto:',
-                    'closingReplacement' => '">',
-                ],
-                'color' => [
-                    'tagStart' => 'color=',
-                    'openingReplacement' => '<span style="color:',
-                    'closingReplacement' => ';">',
-                ],
-                'url' => function ($body) {
-                    return (new UrlReplacer($body))->process()->getBody();
-                },
-                'quote' => function ($body) {
-                    return (new QuoteReplacer($body))->process()->getBody();
-                }
-
-                ,
-            ],
-        ];
-    }
 }

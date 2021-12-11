@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
+namespace wadephillips\ForumConverter\Services\ComplexReplacers;
 
 use DateTime;
 use Illuminate\Support\Str;
@@ -12,7 +12,7 @@ use function json_decode;
 use const PHP_EOL;
 use function sprintf;
 
-use wadelphillips\ForumConverter\Contracts\Replaceable;
+use wadephillips\ForumConverter\Contracts\Replaceable;
 
 class QuoteReplacer extends BaseReplacer implements Replaceable
 {

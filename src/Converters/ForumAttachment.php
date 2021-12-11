@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Converters;
+namespace wadephillips\ForumConverter\Converters;
 
 use Exception;
 use Illuminate\Http\File;
@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use function mime_content_type;
 use const PHP_EOL;
-use wadelphillips\ForumConverter\Models\Comment;
-use wadelphillips\ForumConverter\Models\ForumAttachment as ForumAttachmentPost;
-use wadelphillips\ForumConverter\Models\LegacyForumAttachment;
-use wadelphillips\ForumConverter\Models\Topic;
+use wadephillips\ForumConverter\Models\Comment;
+use wadephillips\ForumConverter\Models\ForumAttachment as ForumAttachmentPost;
+use wadephillips\ForumConverter\Models\LegacyForumAttachment;
+use wadephillips\ForumConverter\Models\Topic;
 
 class ForumAttachment
 {

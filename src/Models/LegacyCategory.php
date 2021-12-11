@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Models;
+namespace wadephillips\ForumConverter\Models;
 
 use function array_diff;
 use function explode;
@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use function trim;
 use function unserialize;
-use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumCategoryScope;
-use wadelphillips\ForumConverter\Database\Factories\LegacyCategoryFactory;
+use wadephillips\ForumConverter\Contracts\Scopes\LegacyForumCategoryScope;
+use wadephillips\ForumConverter\Database\Factories\LegacyCategoryFactory;
 
 /**
  * LegacyCategory Model represents a Forum Category in a ExpressionEngine2 installation.

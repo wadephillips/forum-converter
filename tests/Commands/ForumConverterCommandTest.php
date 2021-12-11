@@ -1,8 +1,8 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Tests\Commands;
+namespace wadephillips\ForumConverter\Tests\Commands;
 
-use wadelphillips\ForumConverter\Tests\TestCase;
+use wadephillips\ForumConverter\Tests\TestCase;
 
 class ForumConverterCommandTest extends TestCase
 {

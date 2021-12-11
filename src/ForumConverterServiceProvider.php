@@ -1,11 +1,11 @@
 <?php
 
-namespace wadelphillips\ForumConverter;
+namespace wadephillips\ForumConverter;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use wadelphillips\ForumConverter\Commands\ForumConverterCommand;
-use wadelphillips\ForumConverter\Commands\ParseLegacyTopicFormattingCommand;
+use wadephillips\ForumConverter\Commands\ForumConverterCommand;
+use wadephillips\ForumConverter\Commands\ParseLegacyTopicFormattingCommand;
 
 class ForumConverterServiceProvider extends PackageServiceProvider
 {

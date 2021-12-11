@@ -1,6 +1,6 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Tests;
+namespace wadephillips\ForumConverter\Tests;
 
 use function array_filter;
 use function env;
@@ -8,7 +8,7 @@ use function extension_loaded;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
 use PDO;
-use wadelphillips\ForumConverter\ForumConverterServiceProvider;
+use wadephillips\ForumConverter\ForumConverterServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -17,7 +17,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'wadelphillips\\ForumConverter\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'wadephillips\\ForumConverter\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

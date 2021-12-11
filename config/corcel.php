@@ -1,10 +1,10 @@
 <?php
 
-use wadelphillips\ForumConverter\Models\Category;
-use wadelphillips\ForumConverter\Models\Comment;
-use wadelphillips\ForumConverter\Models\Forum;
-use wadelphillips\ForumConverter\Models\ForumAttachment;
-use wadelphillips\ForumConverter\Models\Topic;
+use wadephillips\ForumConverter\Models\Category;
+use wadephillips\ForumConverter\Models\Comment;
+use wadephillips\ForumConverter\Models\Forum;
+use wadephillips\ForumConverter\Models\ForumAttachment;
+use wadephillips\ForumConverter\Models\Topic;
 
 return [
 

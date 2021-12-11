@@ -1,6 +1,6 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Tests\Converters;
+namespace wadephillips\ForumConverter\Tests\Converters;
 
 use PHPUnit\Framework\TestCase;
 

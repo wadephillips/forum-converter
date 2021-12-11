@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Contracts\Scopes;
+namespace wadephillips\ForumConverter\Contracts\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

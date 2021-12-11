@@ -1,2 +1,2 @@
 providers:
-  - wadelphillips\ForumConverter\ForumConverterServiceProvider
+  - wadephillips\ForumConverter\ForumConverterServiceProvider

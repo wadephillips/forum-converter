@@ -1,13 +1,13 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Models;
+namespace wadephillips\ForumConverter\Models;
 
 use Corcel\Model\Post;
 
 /**
  * ForumAttachment Model represents a Forum Attachment in a Buddy Press installation.
- * @package wadelphillips\ForumConverter\Models
+ * @package wadephillips\ForumConverter\Models
  */
 class ForumAttachment extends Post
 {

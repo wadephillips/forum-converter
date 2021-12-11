@@ -1,6 +1,6 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Commands;
+namespace wadephillips\ForumConverter\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -9,7 +9,7 @@ use function is_null;
 
 use function sprintf;
 
-use wadelphillips\ForumConverter\Services\TagReplacer;
+use wadephillips\ForumConverter\Services\TagReplacer;
 
 class ParseLegacyTopicFormattingCommand extends Command
 {
@@ -59,7 +59,7 @@ class ParseLegacyTopicFormattingCommand extends Command
         $model = implode(
             '',
             [
-                             "wadelphillips\ForumConverter\Models",
+                             "wadephillips\ForumConverter\Models",
                              '\\',
                              $argumentModel,
                          ]

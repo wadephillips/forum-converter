@@ -1,8 +1,8 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Contracts;
+namespace wadephillips\ForumConverter\Contracts;
 
-use wadelphillips\ForumConverter\Services\ComplexReplacers\BaseReplacer;
+use wadephillips\ForumConverter\Services\ComplexReplacers\BaseReplacer;
 
 interface Replaceable
 {

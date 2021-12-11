@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
+namespace wadephillips\ForumConverter\Services\ComplexReplacers;
 
 use Illuminate\Support\Str;
 
@@ -28,7 +28,7 @@ class UrlReplacer extends BaseReplacer
     }
 
     /**
-     * Generates the link tag to replace the pseudo tag.
+     * Generates the <a> tag to replace the pseudo tag [url/].
      *
      * @param $content
      * @param $attributes

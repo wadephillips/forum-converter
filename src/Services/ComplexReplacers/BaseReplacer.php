@@ -1,12 +1,12 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Services\ComplexReplacers;
+namespace wadephillips\ForumConverter\Services\ComplexReplacers;
 
 use function count;
 use Illuminate\Support\Str;
 
-use wadelphillips\ForumConverter\Contracts\Replaceable;
+use wadephillips\ForumConverter\Contracts\Replaceable;
 
 abstract class BaseReplacer implements Replaceable
 {

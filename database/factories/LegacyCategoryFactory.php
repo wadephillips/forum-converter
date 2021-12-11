@@ -1,9 +1,9 @@
 <?php
 
-namespace wadelphillips\ForumConverter\Database\Factories;
+namespace wadephillips\ForumConverter\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use wadelphillips\ForumConverter\Models\LegacyCategory;
+use wadephillips\ForumConverter\Models\LegacyCategory;
 
 
 class LegacyCategoryFactory extends Factory

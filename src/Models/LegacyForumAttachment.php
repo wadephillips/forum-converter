@@ -1,12 +1,12 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Models;
+namespace wadephillips\ForumConverter\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use wadelphillips\ForumConverter\Contracts\Scopes\BoardScope;
+use wadephillips\ForumConverter\Contracts\Scopes\BoardScope;
 
 /**
  * LegacyForumAttachment Model represents a Forum Attachment in a ExpressionEngine2 installation.

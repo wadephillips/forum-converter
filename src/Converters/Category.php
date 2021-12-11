@@ -1,11 +1,11 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Converters;
+namespace wadephillips\ForumConverter\Converters;
 
 use Corcel\Model\Option;
-use wadelphillips\ForumConverter\Models\Category as CategoryPost;
-use wadelphillips\ForumConverter\Models\LegacyCategory;
+use wadephillips\ForumConverter\Models\Category as CategoryPost;
+use wadephillips\ForumConverter\Models\LegacyCategory;
 
 class Category
 {

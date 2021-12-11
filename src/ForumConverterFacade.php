@@ -1,11 +1,11 @@
 <?php
 
-namespace wadelphillips\ForumConverter;
+namespace wadephillips\ForumConverter;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \wadelphillips\ForumConverter\ForumConverter
+ * @see \wadephillips\ForumConverter\ForumConverter
  */
 class ForumConverterFacade extends Facade
 {

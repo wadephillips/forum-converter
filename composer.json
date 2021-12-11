@@ -6,7 +6,7 @@
     "laravel",
     "forum-converter"
   ],
-  "homepage": "https://github.com/wadelphillips/forum-converter",
+  "homepage": "https://github.com/wadephillips/forum-converter",
   "license": "MIT",
   "authors": [
     {
@@ -32,13 +32,13 @@
   },
   "autoload": {
     "psr-4": {
-      "wadelphillips\\ForumConverter\\": "src",
-      "wadelphillips\\ForumConverter\\Database\\Factories\\": "database/factories"
+      "wadephillips\\ForumConverter\\": "src",
+      "wadephillips\\ForumConverter\\Database\\Factories\\": "database/factories"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "wadelphillips\\ForumConverter\\Tests\\": "tests"
+      "wadephillips\\ForumConverter\\Tests\\": "tests"
     }
   },
   "scripts": {
@@ -52,10 +52,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "wadelphillips\\ForumConverter\\ForumConverterServiceProvider"
+        "wadephillips\\ForumConverter\\ForumConverterServiceProvider"
       ],
       "aliases": {
-        "ForumConverter": "wadelphillips\\ForumConverter\\ForumConverterFacade"
+        "ForumConverter": "wadephillips\\ForumConverter\\ForumConverterFacade"
       }
     }
   },

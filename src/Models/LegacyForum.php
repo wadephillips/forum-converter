@@ -1,7 +1,7 @@
 <?php
 
 
-namespace wadelphillips\ForumConverter\Models;
+namespace wadephillips\ForumConverter\Models;
 
 use function array_diff;
 use function explode;
@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use function trim;
 use function unserialize;
-use wadelphillips\ForumConverter\Contracts\Scopes\LegacyForumScope;
+use wadephillips\ForumConverter\Contracts\Scopes\LegacyForumScope;
 
 /**
  * LegacyForum Model represents a Forum in a ExpressionEngine2 installation.
- * @package wadelphillips\ForumConverter\Models
+ * @package wadephillips\ForumConverter\Models
  */
 class LegacyForum extends Model
 {
