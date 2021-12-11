@@ -51,6 +51,6 @@ class LegacyForum extends Model
             array_diff(
                 $read,
                 config('forum-converter.forum.legacy.privateGroups')
-        ));
+            ));
     }
 }
