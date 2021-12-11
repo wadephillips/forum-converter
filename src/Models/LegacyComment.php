@@ -32,12 +32,12 @@ class LegacyComment extends Model
      * */
     public function topic()
     {
-        return $this->belongsTo(LegacyPost::class, 'topic_id', 'topic_id');
+        return $this->belongsTo(LegacyTopic::class, 'topic_id', 'topic_id');
     }
 
     public function forum()
     {
-        return $this->belongsTo(LegacyPost::class, 'forum_id', 'forum_id');
+        return $this->belongsTo(LegacyTopic::class, 'forum_id', 'forum_id');
     }
 
     public function author()
